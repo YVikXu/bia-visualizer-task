@@ -32571,6 +32571,7 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 // Hosted/iframe integration helpers for the embedded BIA-InW task.
 let toastT;
 let BIA_TOTAL_START = null;
+let BIA_FINISHED_SENT = false;
 const BIA_CONDITION_START = { current: null, ideal: null, reasonable: null };
 
 function conditionPrefix(cond) {
@@ -32674,10 +32675,13 @@ function goFromReasonableToFinal() {
     collectBiaCondition('reasonable'),
     saveDurationForCondition('reasonable')
   ));
+  finishBiaTask();
   goPage('page-thankyou');
 }
 
 function finishBiaTask() {
+  if (BIA_FINISHED_SENT) return;
+  BIA_FINISHED_SENT = true;
   const row = readBiaRow();
   const payload = Object.assign(
     { bia_completed: '1', bia_all_values_json: JSON.stringify(row) },
@@ -32691,6 +32695,7 @@ function finishBiaTask() {
 
 function initializeBiaHosted() {
   BIA_TOTAL_START = Date.now();
+  BIA_FINISHED_SENT = false;
   postBiaMessage('bia-inw-ready', { bia_completed: '0', bia_internal_page_reached: 'intro' });
   goPage('page-intro');
 }
