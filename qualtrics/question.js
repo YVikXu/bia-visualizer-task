@@ -12,7 +12,7 @@ Qualtrics.SurveyEngine.addOnReady(function () {
   function text(s){status.textContent=s;}
   function gate(){ready=false;q.hideNextButton();}
   // Never share a recovery key across responses. Stop rather than guess an ID.
-  if(!response||response.indexOf('${')>=0||!survey||survey.indexOf('${')>=0){text('The survey response identifier is unavailable. Please contact the study team.');return;}
+  if(!response||response.indexOf('$'+'{')>=0||!survey||survey.indexOf('$'+'{')>=0){text('The survey response identifier is unavailable. Please contact the study team.');return;}
   var key='bia-v1:'+survey+':'+response+':'+q.questionId;
   function parse(s){if(!s)return null;try{return JSON.parse(s);}catch(_){throw Error('Saved progress could not be read.');}}
   function readSaved(){
