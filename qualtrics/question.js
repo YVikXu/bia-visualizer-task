@@ -74,7 +74,7 @@ Qualtrics.SurveyEngine.addOnReady(function () {
     frame.style.height=(landscape?Math.max(270,height-20):Math.max(480,Math.min(820,height-160)))+'px';
   }
   resizeFrame();window.addEventListener('resize',resizeFrame);
-  frame.src=frame.dataset.appUrl+'?qualtrics=1';
+  frame.src=frame.dataset.appUrl+'?qualtrics=1&layout=20261028-compact2';
   engine.addOnPageSubmit(function(type){if(type==='next'&&!ready)return false;});
   engine.addOnUnload(function(){stopped=true;layoutStyle.remove();document.body.classList.remove('bia-survey-page');window.removeEventListener('resize',resizeFrame);window.removeEventListener('message',receive);document.removeEventListener('click',preventNext,true);if(form)form.removeEventListener('submit',preventIncomplete,true);});
 });
