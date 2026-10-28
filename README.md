@@ -126,7 +126,7 @@ Check missing height, unchanged-body confirmation, completion, refresh/return be
 
 ### Desktop and phone layout
 
-The embedded app places the figure **left** and sliders **right** when the app has at least 600 pixels of width. Narrower portrait screens show a suggestion to rotate the phone, with a stacked layout and a figure that stays visible while scrolling the controls. A webpage cannot reliably force a phone to rotate.
+The embedded survey page uses a wider window. Each dimension name sits beside its slider to keep the controls compact. At widths of 600 pixels or more, the figure is on the **left** and controls on the **right**. On narrow portrait screens, the figure stays above a separate scrolling control panel, so it cannot cover the sliders. Landscape phones use a smaller figure panel. Very small screens or larger text may still require scrolling within the controls. A webpage cannot reliably force a phone to rotate.
 
 Desktop Chrome Preview and simulated portrait/landscape widths have been checked. **Physical phone touch input still needs testing before mobile data collection.**
 
