@@ -1,27 +1,144 @@
-# BIA-InW Body Visualizer Task
+# BIA-InW Body Visualizer
 
-This repository hosts the browser-based BIA-InW body visualizer task for use as a standalone web app or embedded inside Qualtrics.
+Let participants adjust a body figure in their browser, then save the measurements you need in your Qualtrics survey.
 
-## GitHub Pages
+## What does the app do?
 
-After GitHub Pages is enabled for this repository, the app is available at:
+Participants create three body figures in order:
+
+**Current Body → Ideal Body → Reasonable Body**
+
+On each page, they enter a height and adjust seven dimensions: **Head, Shoulder, Arm, Chest, Waist, Hips, and Thigh**. The starting figure is random. The app keeps both its starting values and the participant's final values. A valid height is required. If a participant leaves the figure unchanged, the app asks them to confirm that choice.
+
+## Two versions
+
+| With dimension guides | Without dimension guides |
+|---|---|
+| Lines show the body dimensions. | The figure is shown without those lines. |
+| `body-visualizer.html` | `body-visualizer-noline.html` |
+
+<table><tr><td align="center" valign="bottom"><img src="with-guides-demo.png" height="478" alt="App screenshot with dimension guides"><br>With dimension guides</td><td align="center" valign="bottom"><img src="without-guides-demo.png" height="464" alt="App screenshot without dimension guides"><br>Without dimension guides</td></tr></table>
+
+These are app screenshots with different body settings. The silhouettes are displayed at approximately the same height. Hiding the visible guides does not remove the measurement calculations.
+
+Try the standalone apps: [with dimension guides](https://yvikxu.github.io/bia-visualizer-task/body-visualizer.html) · [without dimension guides](https://yvikxu.github.io/bia-visualizer-task/body-visualizer-noline.html).
+
+## What does the measurement output?
+
+The standalone app downloads a **CSV file**, a table you can open in Excel or statistical software. The current standalone export has **202 columns**, including body values and extra details about the session and calculations.
+
+**You do not have to save everything in Qualtrics.** Choose the values your study needs. In Qualtrics, each Embedded Data field is a named space that stores a value with a survey response.
+
+The supplied connection saves **90 body result fields**:
+
+| What is saved | Fields across 3 bodies | Example | Purpose |
+|---|---:|---|---|
+| Final SVG scores | 21 | `cbs_wa_svg_score` | Scores calculated from the drawn dimension lengths |
+| Starting SVG scores | 21 | `init_cbs_wa_svg_score` | The same scores before adjustment |
+| Final slider settings | 21 | `cbs_wa` | Recreate the final figure |
+| Starting slider settings | 21 | `init_cbs_wa` | Recreate the starting figure and original arm reference |
+| Entered height, centimeters | 3 | `cbs_height_cm` | Height entered for each body |
+| Visible time, seconds | 3 | `cbs_duration_seconds` | Time looking, adjusting and waiting in a pop-up; time away is excluded |
+| **Total** | **90** | **30 per body × 3** | |
+
+**Reading the names:** `cbs` = Current Body; `ibs` = Ideal Body; `rbs` = Reasonable Body. `init_` means a starting value. Dimension names are `hd` (Head), `sh` (Shoulder), `ar` (Arm), `ch` (Chest), `wa` (Waist), `hi` (Hips), and `th` (Thigh).
+
+Other standalone outputs include measured drawing-line lengths (`svg_measure`), the difference between SVG score and slider (`svg_delta`), height in other units, unchanged-body confirmations, and session/export details. These are not part of this 90-field selection.
+
+### Why are the SVG score and slider setting different?
+
+**Slider setting → body drawing → measured dimension length → SVG score**
+
+We adjusted the body shapes to keep the silhouette looking natural and human-like. Moving a slider by the same amount therefore does not necessarily produce an equal change in a drawn dimension's length. Do not treat its 1–100 setting as a direct measure of that length.
+
+The app measures the relevant line across the silhouette and converts its length to a **1–100 SVG score**, using that dimension's reference minimum and maximum. This conversion is linear in the measured length. Use the SVG score for the length-based value and the slider setting to recreate the figure. Keep the SVG score's decimal places.
+
+This does not mean every slider is strongly nonlinear: current checks found several dimensions linear within numerical precision, while Head and Arm remain approximately linear. Measuring the drawing avoids assuming that its score equals the slider setting. Drawing lengths are not body circumferences or real-world measurements in centimeters.
+
+## How to embed it in Qualtrics
+
+All setup files are together in the **[qualtrics/](qualtrics/)** folder. The two full apps stay in the project's main folder.
+
+### 1. Put your own copy online
+
+Keep your own copy so you control when the measurement changes.
+
+1. Sign in to GitHub. On this project's page, click **Fork** to create a copy in your account.
+2. In your copy, open **Settings → Pages**. Choose **Deploy from a branch**, **main**, and **/ (root)**, then save.
+3. Wait until GitHub shows that your site is ready. Open the file link for your chosen version:
 
 ```text
-https://<github-username>.github.io/bia-visualizer-task/
+With dimension guides:
+https://YOUR-NAME.github.io/YOUR-REPO/body-visualizer.html
+
+Without dimension guides:
+https://YOUR-NAME.github.io/YOUR-REPO/body-visualizer-noline.html
 ```
 
-## Qualtrics Embed
+Replace `YOUR-NAME` and `YOUR-REPO` with your own names. Participants do not need a GitHub account.
 
-Use a Text / Graphic question in Qualtrics.
+**Leave your copy unchanged while collecting data.** Updates to the original project will not change your copy unless you choose to bring them in. Updating your own Pages file changes every survey using that address, even without republishing Qualtrics. Test updates separately first.
 
-1. In the question HTML/source view, paste `qualtrics_embed_question_html.html`.
-2. Replace `__GITHUB_PAGES_URL__` with the final GitHub Pages URL for `index.html`.
-3. In the question JavaScript editor, paste `qualtrics_embed_question_javascript.js`.
-4. Replace `__GITHUB_PAGES_ORIGIN__` with the origin only, for example `https://<github-username>.github.io`.
-5. Add the Embedded Data fields listed in `qualtrics_embedded_data_fields.txt` to Survey Flow before the block.
+### 2. Choose the values to save
 
-The app sends results to Qualtrics with `window.postMessage`. Qualtrics stores them as Embedded Data fields such as `cbs_*`, `ibs_*`, and `rbs_*`.
+For the supplied setup, open **Survey Flow** and add an **Embedded Data** element **before the assessment block**. Add every name in [qualtrics/all-fields.txt](qualtrics/all-fields.txt), leaving the initial values blank. Do not set these fields back to blank later in the flow.
 
-## Data
+The list contains:
 
-The GitHub Pages app is static. It does not store participant data on GitHub. Participant responses are written into Qualtrics Embedded Data when the app is embedded in a Qualtrics survey.
+- **90 result fields**, listed separately in [embedded-data-fields.txt](qualtrics/embedded-data-fields.txt).
+- **2 technical fields**, `bia_state` and `bia_complete`, listed in [recovery-fields.txt](qualtrics/recovery-fields.txt). These preserve progress and completion; they are not additional body measurements.
+
+You may choose a different set of results for your study. The app's outgoing values and the question connection's list must be changed together. **Creating extra Qualtrics fields alone does not make the app send those values.** See [setup.md](qualtrics/setup.md) for the places to change, or ask the person helping you with the code. Keep the recovery information even if you select fewer analysis fields.
+
+### 3. Add the app to a survey page
+
+1. Add a **Text / Graphic** question to your assessment block. Put it on its own survey page.
+2. Open the question's **HTML/source view**. Replace its contents with [qualtrics/question.html](qualtrics/question.html).
+3. In `data-app-url`, replace the example address with your own full app link from Step 1.
+
+**Want guides?** Use the link ending in `/body-visualizer.html`.
+
+**Want no guides?** Use the link ending in `/body-visualizer-noline.html`.
+
+Keep the response and survey identifier placeholders in the HTML unchanged. Do not paste the whole app into Qualtrics. The short HTML displays the online app inside the question.
+
+### 4. Connect it to the survey
+
+Open **JavaScript** for that question. Replace the editor's contents with all of [qualtrics/question.js](qualtrics/question.js), then save.
+
+The connection reads the app address from your question. It accepts messages only from that app's frame and site, saves the chosen results, and hides Qualtrics Next while the assessment is unfinished. Once all three bodies pass validation and the survey page accepts the results, **Qualtrics Next appears**. The participant clicks it to save the page and continue.
+
+If JavaScript is unavailable in your account, ask your Qualtrics administrator whether your license allows it. See the [official JavaScript instructions](https://www.qualtrics.com/support/survey-platform/survey-module/question-options/add-javascript/).
+
+### 5. Understand saving and returning
+
+The app passes progress to the survey during the task. A browser copy is tied to the existing Qualtrics response identifier, so a different response does not reuse the same person's figure. Initial values, adjusted figures, original arm reference, height, units, current page, confirmations and visible time are preserved.
+
+**The completion message confirms that the survey page accepted the values. Clicking Qualtrics Next saves that page to Qualtrics' server.** Before that click, recovery of an unfinished draft depends on storage in the same browser. Clearing browser data or unavailable browser storage can prevent recovery. Unsubmitted cross-device recovery is not supported.
+
+The apps run on GitHub Pages, but responses are not uploaded to GitHub. Results are passed to Qualtrics and cached in the survey site's browser storage.
+
+### 6. Check your setup before collecting data
+
+Use **Preview** first. Check [test-checklist.md](qualtrics/test-checklist.md), then complete a test response and inspect its exported values.
+
+Check missing height, unchanged-body confirmation, completion, refresh/return behavior, separate responses, and the devices you allow. Seeing the figure appear does not prove the results were saved. Only publish the survey when your setup has passed these checks.
+
+### Desktop and phone layout
+
+The embedded app places the figure **left** and sliders **right** when the app has at least 600 pixels of width. Narrower portrait screens show a suggestion to rotate the phone, with a stacked layout and a figure that stays visible while scrolling the controls. A webpage cannot reliably force a phone to rotate.
+
+Desktop Chrome Preview and simulated portrait/landscape widths have been checked. **Physical phone touch input still needs testing before mobile data collection.**
+
+## Troubleshooting
+
+| Problem | First thing to check |
+|---|---|
+| The app does not appear. | Open its full link by itself. Check the filename, Pages deployment and `data-app-url`. |
+| The wrong version appears. | Check whether the link ends in `body-visualizer.html` or `body-visualizer-noline.html`. |
+| Values are blank. | Check the question JavaScript and matching field names, defined before the block. |
+| Next does not appear. | Check height and confirmation on all three pages, then read the save status above the app. |
+| A return creates a new random figure. | Check that it is the same survey response and that browser storage is available. Stop collection until recovery works as documented. |
+| New code is not visible in the live survey. | Qualtrics draft changes require Publish; Pages changes require a successful deployment. Test the draft before publishing. |
+
+The current connection was checked with 90 nonempty result values in an exported Qualtrics Preview test response, including the exact entered centimeter value and feet/inches conversion. Returning from the following survey page restored all slider values and completion. This does not replace validation of your own survey, browser and device settings.

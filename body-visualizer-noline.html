@@ -35206,7 +35206,7 @@ function exportCSV(){
 
 /* Qualtrics connection. Kept separate from the accepted drawing/scoring code. */
 const biaEmbedded=window.parent!==window && new URLSearchParams(location.search).get('qualtrics')==='1';
-let biaContext=null,biaComplete=false,biaRevision=0,biaLastMessage=null,biaRestoring=false;
+let biaContext=null,biaComplete=false,biaRevision=0,biaLastMessage=null,biaRestoring=false,biaBlocked=false;
 const biaDims=['hd','sh','ar','ch','wa','hi','th'];
 const biaPrefixes={current:'cbs',ideal:'ibs',reasonable:'rbs'};
 function biaPost(type,payload={}){
@@ -35247,7 +35247,7 @@ function biaResults(){
 }
 function biaAllValid(){return CONDS.every(c=>Number.isFinite(getHcm(c))&&(hasBodyAdjustments(c)||unchangedApprovals[c]===bodyAdjustmentSignature(c)));}
 function biaSave(){
-  if(!biaContext||!studyStarted||biaRestoring)return;
+  if(!biaContext||!studyStarted||biaRestoring||biaBlocked)return;
   try{const state=biaState();biaLastMessage={state,values:biaResults()};biaPost('save',biaLastMessage);}
   catch(e){biaPost('error',{message:'Could not prepare assessment data. Please remain on this page.'});}
 }
@@ -35296,7 +35296,7 @@ if(biaEmbedded){
       try{
         if(m.state)biaRestore(m.state);else startStudy();
         biaThanks(false);document.documentElement.style.visibility='';biaSave();
-      }catch(e){biaRestoring=false;document.documentElement.style.visibility='';document.body.textContent='Unable to restore your saved assessment. Please contact the study team. Your saved state has not been overwritten.';biaPost('error',{message:e.message});}
+      }catch(e){biaBlocked=true;biaLastMessage=null;biaRestoring=false;document.documentElement.style.visibility='';document.body.textContent='Unable to restore your saved assessment. Please contact the study team. Your saved state has not been overwritten.';biaPost('error',{message:e.message});}
       return;
     }
     if(event.origin!==biaContext.origin||m.channel!==biaContext.channel)return;
