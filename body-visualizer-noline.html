@@ -115,6 +115,12 @@ html.bia-embedded .error-text{font-size:12px;margin-top:4px}
 html.bia-embedded .ctrl-foot{padding-top:8px;gap:6px}
 html.bia-embedded .btn-next{padding:10px;font-size:13px;min-height:36px}
 html.bia-embedded [hidden]{display:none!important}
+/* Desktop: distribute spare height between all slider rows, keeping Next at the bottom. */
+@media(min-width:600px) and (min-height:481px){
+ html.bia-embedded .ctrl-head,html.bia-embedded .cg:has(.height-row),html.bia-embedded .ctrl-foot{flex-shrink:0}
+ html.bia-embedded .cg:has(input[type=range]){flex:1 0 32px}
+ html.bia-embedded .ctrl-foot{margin-top:0}
+}
 /* Portrait: two separate rows. Only the controls scroll; the figure cannot cover them. */
 @media(max-width:599px){
  html.bia-embedded .layout{grid-template-columns:minmax(0,1fr);grid-template-rows:clamp(130px,28dvh,220px) minmax(0,1fr)}
@@ -127,6 +133,7 @@ html.bia-embedded [hidden]{display:none!important}
 }
 /* Landscape phones: leave enough width for controls and fit the whole figure vertically. */
 @media(min-width:600px) and (max-height:480px){
+ html.bia-embedded .page{height:100%;max-height:320px}
  html.bia-embedded .layout{grid-template-columns:minmax(0,36%) minmax(0,1fr)}
  html.bia-embedded .body-panel{padding:27px 6px 5px}
  html.bia-embedded .ctrl-panel{padding:6px 12px}
@@ -143,7 +150,7 @@ html.bia-embedded [hidden]{display:none!important}
  html.bia-embedded .hnum{padding:3px 6px}
  html.bia-embedded .height-entry.imperial .hnum{padding:3px}
  html.bia-embedded .height-unit-btn{padding:3px 8px}
- html.bia-embedded .ctrl-foot{padding-top:4px}
+ html.bia-embedded .ctrl-foot{margin-top:6px;padding-top:0;flex-shrink:0}
  html.bia-embedded .btn-next{padding:7px;min-height:31px;font-size:12px}
 }
 </style></head>
