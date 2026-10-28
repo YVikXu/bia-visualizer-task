@@ -26,4 +26,8 @@ The question connection widens this survey page only. Labels and sliders share a
 Leave your GitHub copy unchanged during data collection. Updating a Pages file changes every survey using that file address, without republishing Qualtrics. Test updates at a separate address first.
 
 ## Validation status
-Desktop Chrome Qualtrics Preview was tested: validation, real mouse adjustment, completion gating, 90 nonempty exported fields, return from the next page, and embedded-frame reload. Simulated portrait and landscape widths were also checked. Physical phone touch input and unsubmitted cross-device recovery are not validated; cross-device draft recovery is not provided. Block Preview refresh starts a new response, which correctly gets a new figure. Check your survey resume settings and response expiry; restoration only applies to the same still-open response.
+A complete synthetic response through a published survey link exported 90 nonempty numeric fields. All 42 starting/final sliders and 3 heights matched observed inputs exactly. All 42 SVG scores passed recalculation within the documented offline sampling tolerances; 3 timer fields matched the elapsed-time state. Same-response refresh preserved values and completion. See [integration-checks.md](integration-checks.md) for the comparison method and limits.
+
+Two live-page transitions in that Chrome session stayed blank at Loading until the response was re-entered or refreshed. Progress was preserved; the loading cause remains unresolved. Do not treat a successful data export as proof of consistently reliable loading. Test the published link as well as Preview, and exclude marked test responses from analyses.
+
+Physical phone touch/mobile loading and your exact survey settings need separate checks. Cross-device draft recovery is not provided. Block Preview refresh can create a new response; restoration only applies to the same still-valid response.
