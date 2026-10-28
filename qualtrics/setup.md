@@ -20,10 +20,10 @@ Progress is passed to the survey during the task and cached on the survey site i
 Do not put response IDs or answers in the hosted app URL. The connection sends them through a checked frame message; it accepts messages only from the app's frame and site. Never use one shared cache key for all participants.
 
 ## Layout
-The embedded app places the figure left and sliders right at widths of 600px or more. Narrow portrait screens show a rotate-phone suggestion and a stacked layout with a sticky figure. Web pages cannot reliably force phone rotation. Test actual phones and native touch input before allowing them.
+The question connection widens this survey page only. Labels and sliders share a row. At widths of 600px or more, the figure stays left and controls right; on landscape phones the figure panel is smaller. Narrow portrait screens use two separate rows: a fixed figure above a scrolling control panel, without overlap. Very small screens or larger text may still need scrolling within the controls. Web pages cannot reliably force phone rotation. Test actual phones and native touch input before allowing them.
 
 ## Updates
 Leave your GitHub copy unchanged during data collection. Updating a Pages file changes every survey using that file address, without republishing Qualtrics. Test updates at a separate address first.
 
 ## Validation status
-Implementation and live integration checks are in progress. Standalone tests do not establish Qualtrics end-to-end validity. See the local dated integration report for the final scope of testing.
+Desktop Chrome Qualtrics Preview was tested: validation, real mouse adjustment, completion gating, 90 nonempty exported fields, return from the next page, and embedded-frame reload. Simulated portrait and landscape widths were also checked. Physical phone touch input and unsubmitted cross-device recovery are not validated; cross-device draft recovery is not provided. Block Preview refresh starts a new response, which correctly gets a new figure. Check your survey resume settings and response expiry; restoration only applies to the same still-open response.

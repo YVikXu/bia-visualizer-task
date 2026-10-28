@@ -29,7 +29,7 @@ Qualtrics.SurveyEngine.addOnReady(function () {
   function receive(event){
     var m=event.data;
     if(stopped||event.origin!==allowed||event.source!==frame.contentWindow||!m||m.source!=='bia-inw-visualizer')return;
-    if(m.type==='ready'){frame.contentWindow.postMessage({source:'bia-qualtrics-host',type:'init',channel:channel,state:initial?initial.state:null},allowed);return;}
+    if(m.type==='ready'){frame.contentWindow.postMessage({source:'bia-qualtrics-host',type:'init',channel:channel,state:latest?latest.state:(initial?initial.state:null)},allowed);return;}
     if(m.channel!==channel)return;
     if(m.type==='error'){gate();text(m.message||'Unable to save assessment.');return;}
     if(m.type!=='save'||!m.state||m.state.schema!==1||!Number.isSafeInteger(m.state.revision)||m.state.revision<1)return;
@@ -62,9 +62,19 @@ Qualtrics.SurveyEngine.addOnReady(function () {
   if(form)form.addEventListener('submit',preventIncomplete,true);
   document.addEventListener('click',preventNext,true);
   window.addEventListener('message',receive);
-  function resizeFrame(){frame.style.height=Math.max(480,Math.min(900,window.innerHeight-120))+'px';}
+  // Widen this survey page only; restore its normal appearance when leaving.
+  var layoutStyle=document.createElement('style');
+  layoutStyle.textContent='body.bia-survey-page .SkinInner{width:1160px!important;max-width:96%!important}body.bia-survey-page #'+q.questionId+' .QuestionText{padding:8px!important}body.bia-survey-page .bia-status{font-size:12px;line-height:1.35;margin:0 0 8px}';
+  document.head.appendChild(layoutStyle);document.body.classList.add('bia-survey-page');
+  function resizeFrame(){
+    var width=window.innerWidth, height=window.innerHeight;
+    // The preview wrapper can retain an old inner-frame height after rotation.
+    try{if(window.top!==window){width=Math.min(width,window.top.innerWidth);height=window.top.innerHeight-56;}}catch(_){}
+    var landscape=width>=600&&height<500;
+    frame.style.height=(landscape?Math.max(310,height-20):Math.max(480,Math.min(820,height-160)))+'px';
+  }
   resizeFrame();window.addEventListener('resize',resizeFrame);
   frame.src=frame.dataset.appUrl+'?qualtrics=1';
   engine.addOnPageSubmit(function(type){if(type==='next'&&!ready)return false;});
-  engine.addOnUnload(function(){stopped=true;window.removeEventListener('resize',resizeFrame);window.removeEventListener('message',receive);document.removeEventListener('click',preventNext,true);if(form)form.removeEventListener('submit',preventIncomplete,true);});
+  engine.addOnUnload(function(){stopped=true;layoutStyle.remove();document.body.classList.remove('bia-survey-page');window.removeEventListener('resize',resizeFrame);window.removeEventListener('message',receive);document.removeEventListener('click',preventNext,true);if(form)form.removeEventListener('submit',preventIncomplete,true);});
 });
