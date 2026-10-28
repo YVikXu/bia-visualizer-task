@@ -117,30 +117,33 @@ html.bia-embedded .btn-next{padding:10px;font-size:13px;min-height:36px}
 html.bia-embedded [hidden]{display:none!important}
 /* Portrait: two separate rows. Only the controls scroll; the figure cannot cover them. */
 @media(max-width:599px){
- html.bia-embedded .layout{grid-template-columns:minmax(0,1fr);grid-template-rows:clamp(145px,32dvh,240px) minmax(0,1fr)}
+ html.bia-embedded .layout{grid-template-columns:minmax(0,1fr);grid-template-rows:clamp(130px,28dvh,220px) minmax(0,1fr)}
  html.bia-embedded .body-panel{padding:28px 8px 5px;border-bottom:1px solid #ccc}
- html.bia-embedded .ctrl-panel{padding:10px 12px}
+ html.bia-embedded .ctrl-panel{padding:8px 12px}
  html.bia-embedded .ctrl-head h2{font-size:18px}
  html.bia-embedded .ctrl-head p{font-size:12px;margin-bottom:7px;padding-bottom:7px}
- html.bia-embedded .cg:has(input[type=range]){grid-template-columns:104px minmax(0,1fr);gap:8px;min-height:30px}
+ html.bia-embedded .cg:has(input[type=range]){grid-template-columns:104px minmax(0,1fr);gap:8px;min-height:28px}
  html.bia-embedded .ctrl-foot{margin-top:4px}
 }
 /* Landscape phones: leave enough width for controls and fit the whole figure vertically. */
 @media(min-width:600px) and (max-height:480px){
  html.bia-embedded .layout{grid-template-columns:minmax(0,36%) minmax(0,1fr)}
  html.bia-embedded .body-panel{padding:27px 6px 5px}
- html.bia-embedded .ctrl-panel{padding:7px 12px}
- html.bia-embedded .ctrl-head h2{font-size:16px;margin-bottom:2px}
- html.bia-embedded .ctrl-head p{font-size:11px;margin-bottom:5px;padding-bottom:5px}
- html.bia-embedded .cg{margin-bottom:5px}
+ html.bia-embedded .ctrl-panel{padding:6px 12px}
+ html.bia-embedded .ctrl-head h2{display:none}
+ html.bia-embedded .ctrl-head p{font-size:11px;line-height:1.2;margin-bottom:4px;padding-bottom:4px}
+ html.bia-embedded .cg{margin-bottom:4px}
+ html.bia-embedded .cg:has(.height-row){display:grid;grid-template-columns:102px minmax(0,1fr);gap:8px;align-items:center}
+ html.bia-embedded .cg:has(.height-row) .cg-row{margin:0}
+ html.bia-embedded .cg:has(.height-row) .error-text{grid-column:1/-1}
  html.bia-embedded .cg-row{margin-bottom:3px}
  html.bia-embedded .cg-lbl{font-size:12px}
- html.bia-embedded .cg:has(input[type=range]){grid-template-columns:102px minmax(0,1fr);min-height:26px;gap:8px}
- html.bia-embedded input[type=range]{height:26px}
+ html.bia-embedded .cg:has(input[type=range]){grid-template-columns:102px minmax(0,1fr);min-height:24px;gap:8px}
+ html.bia-embedded input[type=range]{height:24px}
  html.bia-embedded .hnum{padding:3px 6px}
  html.bia-embedded .height-entry.imperial .hnum{padding:3px}
  html.bia-embedded .height-unit-btn{padding:3px 8px}
- html.bia-embedded .ctrl-foot{padding-top:5px}
+ html.bia-embedded .ctrl-foot{padding-top:4px}
  html.bia-embedded .btn-next{padding:7px;min-height:31px;font-size:12px}
 }
 </style></head>
