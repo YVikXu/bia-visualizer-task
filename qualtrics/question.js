@@ -7,7 +7,7 @@ Qualtrics.SurveyEngine.addOnReady(function () {
   var response=root.dataset.response, survey=root.dataset.survey, channel=crypto.randomUUID();
   var prefixes=['cbs','ibs','rbs'], dims=['hd','sh','ar','ch','wa','hi','th'], fields=[];
   prefixes.forEach(function(p){dims.forEach(function(d){fields.push(p+'_'+d+'_svg_score','init_'+p+'_'+d+'_svg_score',p+'_'+d,'init_'+p+'_'+d);});fields.push(p+'_height_cm',p+'_duration_seconds');});
-  var ready=false, latest=null, form=root.closest('form'), stopped=false;
+  var ready=false, latest=null, form=root.closest('form'), stopped=false, goingBack=false;
   q.hideNextButton();
   function text(s){status.textContent=s;}
   function gate(){ready=false;q.hideNextButton();}
@@ -57,12 +57,14 @@ Qualtrics.SurveyEngine.addOnReady(function () {
       frame.contentWindow.postMessage({source:'bia-qualtrics-host',type:'ack',channel:channel,revision:m.state.revision},allowed);
     }catch(e){gate();text('Unable to save assessment: '+e.message+' Please remain on this page.');}
   }
-  function preventIncomplete(e){if(!ready){e.preventDefault();e.stopImmediatePropagation();text('Please complete the assessment and wait for confirmation before continuing.');}}
-  function preventNext(e){var b=e.target.closest&&e.target.closest('#NextButton');if(b&&!ready)preventIncomplete(e);}
+  function preventIncomplete(e){if(!ready&&!goingBack){e.preventDefault();e.stopImmediatePropagation();text('Please complete the assessment and wait for confirmation before continuing.');}}
+  function preventNext(e){if(e.target.closest&&e.target.closest('#PreviousButton')){goingBack=true;return;}var b=e.target.closest&&e.target.closest('#NextButton');if(b){goingBack=false;if(!ready)preventIncomplete(e);}}
   if(form)form.addEventListener('submit',preventIncomplete,true);
   document.addEventListener('click',preventNext,true);
   window.addEventListener('message',receive);
+  function resizeFrame(){frame.style.height=Math.max(480,Math.min(900,window.innerHeight-120))+'px';}
+  resizeFrame();window.addEventListener('resize',resizeFrame);
   frame.src=frame.dataset.appUrl+'?qualtrics=1';
   engine.addOnPageSubmit(function(type){if(type==='next'&&!ready)return false;});
-  engine.addOnUnload(function(){stopped=true;window.removeEventListener('message',receive);document.removeEventListener('click',preventNext,true);if(form)form.removeEventListener('submit',preventIncomplete,true);});
+  engine.addOnUnload(function(){stopped=true;window.removeEventListener('resize',resizeFrame);window.removeEventListener('message',receive);document.removeEventListener('click',preventNext,true);if(form)form.removeEventListener('submit',preventIncomplete,true);});
 });
