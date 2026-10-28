@@ -70,11 +70,12 @@ Qualtrics.SurveyEngine.addOnReady(function () {
     var width=window.innerWidth, height=window.innerHeight;
     // The preview wrapper can retain an old inner-frame height after rotation.
     try{if(window.top!==window){width=Math.min(width,window.top.innerWidth);height=window.top.innerHeight-56;}}catch(_){}
-    var landscape=width>=600&&height<500;
-    frame.style.height=(landscape?Math.max(270,height-20):Math.max(480,Math.min(820,height-160)))+'px';
+    var visibleHeight=window.visualViewport?window.visualViewport.height:height;
+    var landscape=width>=600&&Math.min(height,visibleHeight)<500;
+    frame.style.height=(landscape?Math.max(270,Math.min(320,height-20,visibleHeight-12)):Math.max(480,Math.min(820,height-160)))+'px';
   }
   resizeFrame();window.addEventListener('resize',resizeFrame);
-  frame.src=frame.dataset.appUrl+'?qualtrics=1&layout=20261028-compact2';
+  frame.src=frame.dataset.appUrl+'?qualtrics=1&layout=20261028-spacing3';
   engine.addOnPageSubmit(function(type){if(type==='next'&&!ready)return false;});
   engine.addOnUnload(function(){stopped=true;layoutStyle.remove();document.body.classList.remove('bia-survey-page');window.removeEventListener('resize',resizeFrame);window.removeEventListener('message',receive);document.removeEventListener('click',preventNext,true);if(form)form.removeEventListener('submit',preventIncomplete,true);});
 });
