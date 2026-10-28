@@ -109,6 +109,12 @@ html.bia-embedded input[type=range]::-moz-range-thumb{width:24px;height:24px}
  html.bia-embedded .badge{top:10px;left:10px;font-size:11px}
  html.bia-embedded .step-ind{top:12px;right:10px}
 }
+
+html.bia-embedded .layout{height:100vh;overflow-y:auto}
+html.bia-embedded .fig-wrap{height:calc(100vh - 90px);max-height:none}
+@media(max-width:599px){html.bia-embedded .fig-wrap{height:240px;max-height:40vh}}
+
+html.bia-embedded [hidden]{display:none!important}
 </style></head>
 <body data-bia-variant="guides">
 <div id="toast"></div><p class="rotate-hint">For a side-by-side view, turn your phone sideways. You can also continue in portrait.</p>
@@ -35212,7 +35218,7 @@ function biaState(){
   for(const c of CONDS){
     const raw={};for(const k of ['height','feet','inches'])raw[k]=document.getElementById(`num-${c}-${k}`).value;
     bodies[c]={initial:{...initVals[c]},sliders:Object.fromEntries(biaDims.map(d=>[d,readSliderValue(c,d)])),
-      anchor:structuredClone(anchorLock[c]),display:{...displayVals[c]},raw,heightEntry:heightEntries[c],
+      anchor:structuredClone(anchorLock[c]),display:{...displayVals[c],...Object.fromEntries(biaDims.map(d=>[d,readSliderValue(c,d)]))},raw,heightEntry:heightEntries[c],
       approval:unchangedApprovals[c],elapsedMs:stateElapsedSeconds(c)*1000};
   }
   return {schema:1,variant:document.body.dataset.biaVariant,revision:++biaRevision,complete:biaComplete,
