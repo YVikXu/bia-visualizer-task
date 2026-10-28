@@ -71,7 +71,8 @@ Qualtrics.SurveyEngine.addOnReady(function () {
     // The preview wrapper can retain an old inner-frame height after rotation.
     try{if(window.top!==window){width=Math.min(width,window.top.innerWidth);height=window.top.innerHeight-56;}}catch(_){}
     var visibleHeight=window.visualViewport?window.visualViewport.height:height;
-    var landscape=width>=600&&Math.min(height,visibleHeight)<500;
+    var phoneLandscape=window.screen&&Math.min(window.screen.width,window.screen.height)<600&&width>=600;
+    var landscape=width>=600&&(Math.min(height,visibleHeight)<500||phoneLandscape);
     frame.style.height=(landscape?Math.max(270,Math.min(320,height-20,visibleHeight-12)):Math.max(480,Math.min(820,height-160)))+'px';
   }
   resizeFrame();window.addEventListener('resize',resizeFrame);
