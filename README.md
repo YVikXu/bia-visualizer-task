@@ -128,7 +128,7 @@ Check missing height, unchanged-body confirmation, completion, refresh/return be
 
 The embedded survey page uses a wider window. Each dimension name sits beside its slider to keep the controls compact. At widths of 600 pixels or more, the figure is on the **left** and controls on the **right**. On narrow portrait screens, the figure stays above a separate scrolling control panel, so it cannot cover the sliders. Landscape phones use a smaller figure panel. Very small screens or larger text may still require scrolling within the controls. A webpage cannot reliably force a phone to rotate.
 
-Desktop Chrome Preview and simulated portrait/landscape widths have been checked. **Physical phone touch input still needs testing before mobile data collection.**
+Desktop Chrome Preview, a complete published survey response, and simulated portrait/landscape layouts have been checked. **A systematic real-phone touch and loading test is still needed before mobile data collection.**
 
 ## Troubleshooting
 
@@ -141,4 +141,6 @@ Desktop Chrome Preview and simulated portrait/landscape widths have been checked
 | A return creates a new random figure. | Check that it is the same survey response and that browser storage is available. Stop collection until recovery works as documented. |
 | New code is not visible in the live survey. | Qualtrics draft changes require Publish; Pages changes require a successful deployment. Test the draft before publishing. |
 
-The current connection was checked with 90 nonempty result values in an exported Qualtrics Preview test response, including the exact entered centimeter value and feet/inches conversion. Returning from the following survey page restored all slider values and completion. This does not replace validation of your own survey, browser and device settings.
+The current connection was also checked with **one completed response through a published survey link**: all 90 result fields were present and nonempty. Starting/final slider settings and heights matched the observed inputs exactly. All 42 SVG scores passed numerical recalculation; the three time fields matched the saved elapsed-time state. Refreshing the same response restored all slider values, heights and completion. See [qualtrics/integration-checks.md](qualtrics/integration-checks.md) for methods, tolerances and limits.
+
+**Loading issue observed:** twice during that live test, the frame stayed blank at “Loading” until the same response was re-entered or refreshed. Progress was preserved, but the cause is not yet isolated. The data check does not establish reliable loading on every visit. Test and resolve this in your intended survey/browser setup before collecting data.
