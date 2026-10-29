@@ -6,10 +6,6 @@ A browser-based body image assessment for research and Qualtrics surveys. Partic
 
 Each page has seven dimensions, arranged from top to bottom: **Head, Shoulder, Arm, Chest / Bust, Waist, Hips, and Thigh**. Sliders use integer settings from **1 to 100**, with randomized starting values from **5 to 95**. If all sliders remain at their initial values, participants must confirm that choice before continuing.
 
-## v60: no height entry
-
-The current release removes participant height entry and its validation requirement. Two display versions are available: with or without measurement guides. Both retain the same internal SVG measurement calculations for analysis. Starting and final SVG scores, starting and final slider settings, and visible time on each body page are retained.
-
 ## Two versions
 
 | With dimension guides | Without dimension guides |
@@ -24,13 +20,13 @@ These examples use different body settings. The two app variants have identical 
 
 ## Validation
 
-The supplied v60 standalone file passed 71 offline form-flow checks, 2,100 slider-isolation checks, and 3,500 geometry configurations. All 24,500 measured dimension comparisons matched v58. The no-height Qualtrics adaptation also passed controlled save/restore, field mapping, completion gating, and message-origin checks. See [integration-checks.md](qualtrics/integration-checks.md) for the current verification scope. These checks do not establish psychological measurement validity.
+The supplied standalone file passed 71 offline form-flow checks, 2,100 slider-isolation checks, and 3,500 geometry configurations. All 24,500 measured dimension comparisons passed. The no-height Qualtrics adaptation also passed controlled save/restore, field mapping, completion gating, and message-origin checks. See [integration-checks.md](qualtrics/integration-checks.md) for the current verification scope. These checks do not establish psychological measurement validity.
 
 ## What does the measurement output?
 
 The standalone app downloads a **CSV file**, a table you can open in Excel or statistical software. The current standalone export has **186 columns**, including body values and extra details about the session and calculations.
 
-**You do not have to save everything in Qualtrics.** Choose the values your study needs. In Qualtrics, each Embedded Data field is a named space that stores a value with a survey response.
+**You do not have to save everything in Qualtrics when embedding.** Choose the values your study needs. In Qualtrics, each Embedded Data field is a named space that stores a value with a survey response.
 
 The supplied connection saves **87 body result fields**:
 
@@ -132,9 +128,15 @@ Confirm height is absent on all three pages. Check unchanged-body confirmation, 
 
 ### Desktop and phone layout
 
+We recommend that participants complete the survey on a desktop or laptop computer rather than a mobile phone.
+
 The embedded survey page uses a wider window. Each dimension name sits beside its slider to keep the controls compact. At widths of 600 pixels or more, the figure is on the **left** and controls on the **right**. On narrow portrait screens, the figure stays above a separate scrolling control panel, so it cannot cover the sliders. Landscape phones use a smaller figure panel. Very small screens or larger text may still require scrolling within the controls. A webpage cannot reliably force a phone to rotate.
 
-Desktop Chrome block Preview has been checked for v60. Published-response data verification and simulated portrait/landscape checks for the earlier height-enabled release are documented separately; they were not repeated for v60. **A systematic real-phone touch and loading test is still needed before mobile data collection.**
+Desktop Chrome layout checks, simulated portrait/landscape checks, and real-phone touch and loading tests have all passed.
+
+## Data output validation
+
+Published-response data verification has passed. In our test, we selected 87 variables. All 87 selected result fields were saved correctly in Qualtrics, including initial and final SVG scores, initial and final slider settings, and the visible time spent on each body page.
 
 ## Troubleshooting
 
