@@ -22,8 +22,6 @@ The current release removes participant height entry and its validation requirem
 
 These examples use different body settings. The two app variants have identical controls, geometry, scoring and export logic; only the visible measurement guides differ. Neither version collects height. Existing app addresses are retained.
 
-**Updating an existing Qualtrics survey:** Keep the existing iframe address. Replace the question JavaScript with [qualtrics/question.js](qualtrics/question.js), use the 87-field result list, test a new response, and publish the survey changes. Updating GitHub does not update JavaScript previously pasted into Qualtrics. Height-enabled saved states are not silently converted or overwritten; validate this release with a new response.
-
 ## Validation
 
 The supplied v60 standalone file passed 71 offline form-flow checks, 2,100 slider-isolation checks, and 3,500 geometry configurations. All 24,500 measured dimension comparisons matched v58. The no-height Qualtrics adaptation also passed controlled save/restore, field mapping, completion gating, and message-origin checks. See [integration-checks.md](qualtrics/integration-checks.md) for the current verification scope. These checks do not establish psychological measurement validity.
@@ -62,6 +60,10 @@ This does not mean every slider is strongly nonlinear: current checks found seve
 ## How to embed it in Qualtrics
 
 All setup files are together in the **[qualtrics/](qualtrics/)** folder. The two full apps stay in the project's main folder.
+
+### Updating an existing survey
+
+Keep the existing iframe address. Replace the question JavaScript with [qualtrics/question.js](qualtrics/question.js), use the 87-field result list, test a new response, and publish the survey changes. Updating GitHub does not update JavaScript previously pasted into Qualtrics. Height-enabled saved states are not silently converted or overwritten; validate this release with a new response.
 
 ### 1. Put your own copy online
 
@@ -132,7 +134,7 @@ Confirm height is absent on all three pages. Check unchanged-body confirmation, 
 
 The embedded survey page uses a wider window. Each dimension name sits beside its slider to keep the controls compact. At widths of 600 pixels or more, the figure is on the **left** and controls on the **right**. On narrow portrait screens, the figure stays above a separate scrolling control panel, so it cannot cover the sliders. Landscape phones use a smaller figure panel. Very small screens or larger text may still require scrolling within the controls. A webpage cannot reliably force a phone to rotate.
 
-Desktop Chrome Preview, a complete published survey response, and simulated portrait/landscape layouts have been checked. **A systematic real-phone touch and loading test is still needed before mobile data collection.**
+Desktop Chrome block Preview has been checked for v60. Published-response data verification and simulated portrait/landscape checks for the earlier height-enabled release are documented separately; they were not repeated for v60. **A systematic real-phone touch and loading test is still needed before mobile data collection.**
 
 ## Troubleshooting
 
