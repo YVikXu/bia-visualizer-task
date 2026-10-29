@@ -1,13 +1,17 @@
 # v60 no-height integration checks — 29 October 2026
 
 ## Current release
-Both HTML app paths serve the same no-height/no-guides v60 app. The drawing and scoring code comes from the validated standalone file; the separate adapter preserves Qualtrics saving, same-response recovery, and completion gating.
+Both HTML app paths serve v60 without height entry: body-visualizer.html shows measurement guides, and body-visualizer-noline.html hides them. The supplied sources differ only in title and the guide visibility flag. The drawing and scoring code comes from the validated standalone file; the separate adapter preserves Qualtrics saving, same-response recovery, and completion gating.
 
 - 87 result fields: 84 body values plus three visible durations; no participant-height fields.
-- 21 controlled adapter assertions passed, including exact restoration of all 87 values, initial settings, adjusted figures, original arm reference and frozen completion time.
+- Both variants passed 71 controlled form-flow checks and 21 adapter assertions each, including exact restoration of all 87 values, initial settings, adjusted figures, original arm reference and frozen completion time.
 - Controlled question-host tests passed for 89 total fields (87 results plus bia_state/bia_complete), gating, origin/frame/channel checks, stale messages, failed writes, recovery, and separate-response isolation.
 - Schema 2 rejects height-enabled schema-1 drafts without overwriting them. Use a new response for migration testing.
-- These are offline tests with controlled DOM/clock and source-based geometry. Browser/Qualtrics v60 checks will be recorded separately after deployment.
+- The deployed guides app was also checked directly in Chrome: Current, Ideal and Reasonable each displayed all seven guides, no number/height inputs existed, and changing one slider per page allowed completion.
+- Desktop Chrome Qualtrics block Preview passed: all three body pages had no height entry; unchanged Current/Ideal required a confirmation with Back focused; a changed Current advanced without that confirmation; Reasonable accepted all seven deliberate settings including 1 and 100. Qualtrics Next was hidden until completion and the page acknowledged the results.
+- Native Chrome “Reload frame” on the assessment restored all 21 control values, the Reasonable page, and exactly the same rendered SVG paths. This tested application-frame recovery within the same active survey response.
+- Qualtrics published the updated 87-field question script on 29 October 2026; the UI displayed Published. The existing iframe URL was retained. All 89 required Survey Flow fields (87 results and two technical fields) were present. Three legacy height field definitions were retained for historical data; v60 does not write them.
+- This v60 verification does not include a newly submitted published-survey response or server-side CSV export. Preview acknowledgement is not proof of a Qualtrics server submission. Whole-survey/browser restart recovery and physical phone touch/loading were not retested.
 
 ## Historical height-enabled validation
 The following is retained as a record of the previous 90-field release. It does not validate v60.

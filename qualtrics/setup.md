@@ -1,7 +1,7 @@
 # Embed BIA-InW in Qualtrics
 
 1. Create your own GitHub copy using Fork. Enable GitHub Pages under Settings → Pages → Deploy from a branch → main → / (root).
-2. Keep both app HTML files in the project main folder. Both addresses currently serve the same no-height/no-guides v60 app; the height-free guides release is pending. Test the full published link.
+2. Keep both app HTML files in the project main folder. Use body-visualizer.html with dimension guides or body-visualizer-noline.html without guides. Neither version collects height. Test the full published link.
 3. Before the assessment block in Survey Flow, add the names in all-fields.txt. These are 87 body result fields and 2 technical recovery fields, not 89 body measurements. Leave initial values blank; do not reset these fields later in the flow.
 4. Put a Text / Graphic question on its own survey page. Paste question.html in its HTML/source editor. Replace data-app-url with your full published app link. It defaults to the no-guides version.
 5. Paste all of question.js in the question JavaScript editor, replacing its default callbacks. The allowed site is read from the app link. Keep the response and survey piped-text identifiers in the HTML.
