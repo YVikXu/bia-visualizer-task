@@ -8,11 +8,19 @@ Each page has seven dimensions, arranged from top to bottom: **Head, Shoulder, A
 
 ## v60: no height entry
 
-The current release removes participant height entry and its validation requirement. The figure is displayed **without measurement guides**, while the SVG measurement calculations remain available for analysis. Starting and final SVG scores, starting and final slider settings, and visible time on each body page are retained.
+The current release removes participant height entry and its validation requirement. Two display versions are available: with or without measurement guides. Both retain the same internal SVG measurement calculations for analysis. Starting and final SVG scores, starting and final slider settings, and visible time on each body page are retained.
 
-[Open the assessment](https://yvikxu.github.io/bia-visualizer-task/body-visualizer-noline.html)
+## Two versions
 
-Both existing HTML addresses temporarily serve this same **no-height, no-guides** version, so existing app links continue to work. The former guides address (`body-visualizer.html`) currently also displays no guides; a height-free version with guides will be added later.
+| With dimension guides | Without dimension guides |
+|---|---|
+| Lines identify the seven measured dimensions. | The silhouette is displayed without those lines. |
+| [Open with guides](https://yvikxu.github.io/bia-visualizer-task/body-visualizer.html) | [Open without guides](https://yvikxu.github.io/bia-visualizer-task/body-visualizer-noline.html) |
+| `body-visualizer.html` | `body-visualizer-noline.html` |
+
+<table><tr><td align="center" valign="bottom"><img src="with-guides-demo.png" height="478" alt="Body silhouette with seven dimension guides"><br>With dimension guides</td><td align="center" valign="bottom"><img src="without-guides-demo.png" height="478" alt="Body silhouette without dimension guides"><br>Without dimension guides</td></tr></table>
+
+These examples use different body settings. The two app variants have identical controls, geometry, scoring and export logic; only the visible measurement guides differ. Neither version collects height. Existing app addresses are retained.
 
 **Updating an existing Qualtrics survey:** Keep the existing iframe address. Replace the question JavaScript with [qualtrics/question.js](qualtrics/question.js), use the 87-field result list, test a new response, and publish the survey changes. Updating GitHub does not update JavaScript previously pasted into Qualtrics. Height-enabled saved states are not silently converted or overwritten; validate this release with a new response.
 
@@ -64,10 +72,10 @@ Keep your own copy so you control when the measurement changes.
 3. Wait until GitHub shows that your site is ready. Open the file link for your chosen version:
 
 ```text
-With dimension guides:
+With dimension guides (no height):
 https://YOUR-NAME.github.io/YOUR-REPO/body-visualizer.html
 
-Without dimension guides:
+Without dimension guides (no height):
 https://YOUR-NAME.github.io/YOUR-REPO/body-visualizer-noline.html
 ```
 
@@ -92,7 +100,7 @@ You may choose a different set of results for your study. The app's outgoing val
 2. Open the question's **HTML/source view**. Replace its contents with [qualtrics/question.html](qualtrics/question.html).
 3. In `data-app-url`, replace the example address with your own full app link from Step 1.
 
-**Guides version:** pending. Both HTML addresses currently display the same no-guides v60 app.
+**Want guides?** Use the link ending in `/body-visualizer.html`.
 
 **Want no guides?** Use the link ending in `/body-visualizer-noline.html`.
 

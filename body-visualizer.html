@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIA-InW Body Image Study - v60 No Height - No Guides</title>
+<title>BIA-InW Body Image Study - v60 No Height - All Guides</title>
 <meta name="body-visualizer-build" content="v60-no-height-1">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -125,7 +125,7 @@ html.bia-embedded [hidden]{display:none!important}
  html.bia-embedded .btn-next{padding:7px;min-height:31px;font-size:12px}
 }
 </style></head>
-<body data-bia-variant="no-height-no-guides">
+<body data-bia-variant="no-height-guides">
 <div id="toast"></div>
 <dialog id="adjustment-reminder" class="reminder-dialog" aria-labelledby="adjustment-reminder-title" aria-describedby="adjustment-reminder-message" oncancel="event.preventDefault();closeAdjustmentReminder()">
   <h2 id="adjustment-reminder-title">Continue without changes?</h2>
@@ -34429,7 +34429,7 @@ function runGeometryDiagnostics(cond,dv,hs){
 }
 
 
-const SHOW_MEASUREMENT_GUIDES=false;
+const SHOW_MEASUREMENT_GUIDES=true;
 
 function rightThighGuideSpan(pts,y){
   const xs=[];
