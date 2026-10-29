@@ -3,15 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIA-InW Body Image Study - v59 Paired SVG Scores - No Guides</title>
-<meta name="body-visualizer-build" content="v59-paired-svg-scores-1">
+<title>BIA-InW Body Image Study - v60 No Height - No Guides</title>
+<meta name="body-visualizer-build" content="v60-no-height-1">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--accent:#667eea;--accent2:#764ba2;--bg:#f0f0f0;--surface:#fff;--ink:#2c3e50;--muted:#666;--border:#ddd;--r:10px}
 body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
 .page{display:none;min-height:100vh}.page.active{display:flex;flex-direction:column}
-.error-text{display:none;color:#c0392b;font-size:.9em;font-weight:700;line-height:1.45;margin-top:10px}
-.error-text.show{display:block}
 .unit-row{display:flex;gap:10px;margin:20px 0 28px}
 .unit-btn{flex:1;padding:10px;border:2px solid var(--border);border-radius:var(--r);background:var(--bg);font-family:inherit;font-size:.9em;font-weight:500;cursor:pointer;color:var(--muted);transition:all .2s}
 .unit-btn.on{border-color:var(--accent);background:#eef0fd;color:var(--accent);font-weight:700}
@@ -30,18 +28,6 @@ body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:var(--bg
 .cg-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
 .cg-lbl{font-weight:600;font-size:.86em;color:var(--ink);transition:color .2s}
 .cg-lbl.active{color:var(--accent2)}
-.height-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.height-entry{display:flex;align-items:center;gap:8px}
-.height-entry[hidden]{display:none}
-.height-part{display:flex;align-items:center;gap:5px}
-.height-entry.imperial .hnum{width:62px;padding:8px 6px}
-.height-unit-toggle{display:flex;gap:6px;margin-left:auto}
-.height-unit-btn{padding:7px 10px;border:2px solid var(--border);border-radius:8px;background:var(--bg);font-family:inherit;font-size:.82em;font-weight:600;cursor:pointer;color:var(--muted);transition:all .2s}
-.height-unit-btn.on{border-color:var(--accent);background:#eef0fd;color:var(--accent)}
-.hnum{width:85px;padding:8px 10px;border:2px solid var(--border);border-radius:8px;font-family:inherit;font-size:1em;font-weight:700;color:var(--accent);background:#eef0fd;text-align:center}
-.hnum:focus{outline:none;border-color:var(--accent)}
-.hnum[aria-invalid=true]{border-color:#c0392b}
-.hunit{font-size:.88em;color:var(--muted)}
 input[type=range]{width:100%;height:6px;border-radius:4px;background:var(--border);outline:none;-webkit-appearance:none;cursor:pointer}
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer;transition:transform .15s,background .15s}
 input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.3);background:var(--accent2)}
@@ -103,21 +89,12 @@ html.bia-embedded .cg:has(input[type=range]) .cg-row{margin:0}
 html.bia-embedded input[type=range]{height:28px;background:linear-gradient(#ddd,#ddd) center/100% 6px no-repeat;touch-action:pan-y;min-width:0}
 html.bia-embedded input[type=range]::-webkit-slider-thumb{width:24px;height:24px}
 html.bia-embedded input[type=range]::-moz-range-thumb{width:24px;height:24px}
-html.bia-embedded .height-row{gap:6px}
-html.bia-embedded .height-entry{gap:5px}
-html.bia-embedded .height-entry.imperial{gap:5px}
-html.bia-embedded .height-entry.imperial .hnum{width:54px;padding:5px 3px}
-html.bia-embedded .hnum{width:78px;padding:5px 7px;font-size:14px}
-html.bia-embedded .hunit{font-size:12px}
-html.bia-embedded .height-unit-toggle{gap:4px}
-html.bia-embedded .height-unit-btn{padding:5px 8px;font-size:12px}
 html.bia-embedded .error-text{font-size:12px;margin-top:4px}
 html.bia-embedded .ctrl-foot{padding-top:8px;gap:6px}
 html.bia-embedded .btn-next{padding:10px;font-size:13px;min-height:36px}
 html.bia-embedded [hidden]{display:none!important}
 /* Desktop: distribute spare height between all slider rows, keeping Next at the bottom. */
 @media(min-width:600px) and (min-height:481px){
- html.bia-embedded .ctrl-head,html.bia-embedded .cg:has(.height-row),html.bia-embedded .ctrl-foot{flex-shrink:0}
  html.bia-embedded .cg:has(input[type=range]){flex:1 0 32px}
  html.bia-embedded .ctrl-foot{margin-top:0}
 }
@@ -140,22 +117,16 @@ html.bia-embedded [hidden]{display:none!important}
  html.bia-embedded .ctrl-head h2{display:none}
  html.bia-embedded .ctrl-head p{font-size:11px;line-height:1.2;margin-bottom:4px;padding-bottom:4px}
  html.bia-embedded .cg{margin-bottom:4px}
- html.bia-embedded .cg:has(.height-row){display:grid;grid-template-columns:102px minmax(0,1fr);gap:8px;align-items:center}
- html.bia-embedded .cg:has(.height-row) .cg-row{margin:0}
- html.bia-embedded .cg:has(.height-row) .error-text{grid-column:1/-1}
  html.bia-embedded .cg-row{margin-bottom:3px}
  html.bia-embedded .cg-lbl{font-size:12px}
  html.bia-embedded .cg:has(input[type=range]){grid-template-columns:102px minmax(0,1fr);min-height:24px;gap:8px}
  html.bia-embedded input[type=range]{height:24px}
- html.bia-embedded .hnum{padding:3px 6px}
- html.bia-embedded .height-entry.imperial .hnum{padding:3px}
- html.bia-embedded .height-unit-btn{padding:3px 8px}
  html.bia-embedded .ctrl-foot{margin-top:6px;padding-top:0;flex-shrink:0}
  html.bia-embedded .btn-next{padding:7px;min-height:31px;font-size:12px}
 }
 </style></head>
-<body data-bia-variant="no-guides">
-<div id="toast"></div><p class="rotate-hint">For a side-by-side view, turn your phone sideways. You can also continue in portrait.</p>
+<body data-bia-variant="no-height-no-guides">
+<div id="toast"></div>
 <dialog id="adjustment-reminder" class="reminder-dialog" aria-labelledby="adjustment-reminder-title" aria-describedby="adjustment-reminder-message" oncancel="event.preventDefault();closeAdjustmentReminder()">
   <h2 id="adjustment-reminder-title">Continue without changes?</h2>
   <p id="adjustment-reminder-message"></p>
@@ -174,24 +145,6 @@ html.bia-embedded [hidden]{display:none!important}
     </div>
     <div class="ctrl-panel">
       <div class="ctrl-head"><h2>Current Body</h2><p>Adjust to represent your body <strong>as it currently is</strong>.</p></div>
-      <div class="cg">
-        <div class="cg-row"><span class="cg-lbl" id="height-label-current">Height (required)</span></div>
-        <div class="height-row">
-          <div class="height-entry" id="height-cm-current" role="group" aria-labelledby="height-label-current">
-            <input type="number" class="hnum" id="num-current-height" min="1" max="272" step="any" inputmode="decimal" placeholder="Enter" required autocomplete="off" aria-label="Height in centimeters" aria-describedby="height-error-current" oninput="onHeightInput('current')">
-            <span class="hunit">cm</span>
-          </div>
-          <div class="height-entry imperial" id="height-imperial-current" role="group" aria-labelledby="height-label-current" hidden>
-            <div class="height-part"><input type="number" class="hnum" id="num-current-feet" min="0" max="8" step="1" inputmode="numeric" placeholder="ft" disabled autocomplete="off" aria-label="Height in feet" aria-describedby="height-error-current" oninput="onHeightInput('current')"><label class="hunit" for="num-current-feet">ft</label></div>
-            <div class="height-part"><input type="number" class="hnum" id="num-current-inches" min="0" max="11.99" step="any" inputmode="decimal" placeholder="in" disabled autocomplete="off" aria-label="Remaining height in inches" aria-describedby="height-error-current" oninput="onHeightInput('current')"><label class="hunit" for="num-current-inches">in</label></div>
-          </div>
-          <div class="height-unit-toggle" role="group" aria-label="Height units">
-            <button class="height-unit-btn on" data-unit="cm" aria-pressed="true" onclick="setUnit('cm')">cm</button>
-            <button class="height-unit-btn" data-unit="ft-in" aria-pressed="false" onclick="setUnit('ft-in')">ft/in</button>
-          </div>
-        </div>
-        <p class="error-text" id="height-error-current" role="alert"></p>
-      </div>
       <div class="cg"><div class="cg-row"><span class="cg-lbl" id="lbl-current-hd">Head Size</span></div><input type="range" id="sl-current-hd" min="1" max="100" step="1" aria-labelledby="lbl-current-hd" oninput="onSlider('current','hd')"></div>
       <div class="cg"><div class="cg-row"><span class="cg-lbl" id="lbl-current-sh">Shoulder Width</span></div><input type="range" id="sl-current-sh" min="1" max="100" step="1" aria-labelledby="lbl-current-sh" oninput="onSlider('current','sh')"></div>
       <div class="cg"><div class="cg-row"><span class="cg-lbl" id="lbl-current-ar">Arm Size</span></div><input type="range" id="sl-current-ar" min="1" max="100" step="1" aria-labelledby="lbl-current-ar" oninput="onSlider('current','ar')"></div>
@@ -213,24 +166,6 @@ html.bia-embedded [hidden]{display:none!important}
     </div>
     <div class="ctrl-panel">
       <div class="ctrl-head"><h2>Ideal Body</h2><p>Adjust to represent the body <strong>you would most desire</strong>.</p></div>
-      <div class="cg">
-        <div class="cg-row"><span class="cg-lbl" id="height-label-ideal">Height (required)</span></div>
-        <div class="height-row">
-          <div class="height-entry" id="height-cm-ideal" role="group" aria-labelledby="height-label-ideal">
-            <input type="number" class="hnum" id="num-ideal-height" min="1" max="272" step="any" inputmode="decimal" placeholder="Enter" required autocomplete="off" aria-label="Height in centimeters" aria-describedby="height-error-ideal" oninput="onHeightInput('ideal')">
-            <span class="hunit">cm</span>
-          </div>
-          <div class="height-entry imperial" id="height-imperial-ideal" role="group" aria-labelledby="height-label-ideal" hidden>
-            <div class="height-part"><input type="number" class="hnum" id="num-ideal-feet" min="0" max="8" step="1" inputmode="numeric" placeholder="ft" disabled autocomplete="off" aria-label="Height in feet" aria-describedby="height-error-ideal" oninput="onHeightInput('ideal')"><label class="hunit" for="num-ideal-feet">ft</label></div>
-            <div class="height-part"><input type="number" class="hnum" id="num-ideal-inches" min="0" max="11.99" step="any" inputmode="decimal" placeholder="in" disabled autocomplete="off" aria-label="Remaining height in inches" aria-describedby="height-error-ideal" oninput="onHeightInput('ideal')"><label class="hunit" for="num-ideal-inches">in</label></div>
-          </div>
-          <div class="height-unit-toggle" role="group" aria-label="Height units">
-            <button class="height-unit-btn on" data-unit="cm" aria-pressed="true" onclick="setUnit('cm')">cm</button>
-            <button class="height-unit-btn" data-unit="ft-in" aria-pressed="false" onclick="setUnit('ft-in')">ft/in</button>
-          </div>
-        </div>
-        <p class="error-text" id="height-error-ideal" role="alert"></p>
-      </div>
       <div class="cg"><div class="cg-row"><span class="cg-lbl" id="lbl-ideal-hd">Head Size</span></div><input type="range" id="sl-ideal-hd" min="1" max="100" step="1" aria-labelledby="lbl-ideal-hd" oninput="onSlider('ideal','hd')"></div>
       <div class="cg"><div class="cg-row"><span class="cg-lbl" id="lbl-ideal-sh">Shoulder Width</span></div><input type="range" id="sl-ideal-sh" min="1" max="100" step="1" aria-labelledby="lbl-ideal-sh" oninput="onSlider('ideal','sh')"></div>
       <div class="cg"><div class="cg-row"><span class="cg-lbl" id="lbl-ideal-ar">Arm Size</span></div><input type="range" id="sl-ideal-ar" min="1" max="100" step="1" aria-labelledby="lbl-ideal-ar" oninput="onSlider('ideal','ar')"></div>
@@ -252,24 +187,6 @@ html.bia-embedded [hidden]{display:none!important}
     </div>
     <div class="ctrl-panel">
       <div class="ctrl-head"><h2>Reasonable Body</h2><p>Adjust to represent a body you <strong>could realistically achieve</strong> and maintain long-term.</p></div>
-      <div class="cg">
-        <div class="cg-row"><span class="cg-lbl" id="height-label-reasonable">Height (required)</span></div>
-        <div class="height-row">
-          <div class="height-entry" id="height-cm-reasonable" role="group" aria-labelledby="height-label-reasonable">
-            <input type="number" class="hnum" id="num-reasonable-height" min="1" max="272" step="any" inputmode="decimal" placeholder="Enter" required autocomplete="off" aria-label="Height in centimeters" aria-describedby="height-error-reasonable" oninput="onHeightInput('reasonable')">
-            <span class="hunit">cm</span>
-          </div>
-          <div class="height-entry imperial" id="height-imperial-reasonable" role="group" aria-labelledby="height-label-reasonable" hidden>
-            <div class="height-part"><input type="number" class="hnum" id="num-reasonable-feet" min="0" max="8" step="1" inputmode="numeric" placeholder="ft" disabled autocomplete="off" aria-label="Height in feet" aria-describedby="height-error-reasonable" oninput="onHeightInput('reasonable')"><label class="hunit" for="num-reasonable-feet">ft</label></div>
-            <div class="height-part"><input type="number" class="hnum" id="num-reasonable-inches" min="0" max="11.99" step="any" inputmode="decimal" placeholder="in" disabled autocomplete="off" aria-label="Remaining height in inches" aria-describedby="height-error-reasonable" oninput="onHeightInput('reasonable')"><label class="hunit" for="num-reasonable-inches">in</label></div>
-          </div>
-          <div class="height-unit-toggle" role="group" aria-label="Height units">
-            <button class="height-unit-btn on" data-unit="cm" aria-pressed="true" onclick="setUnit('cm')">cm</button>
-            <button class="height-unit-btn" data-unit="ft-in" aria-pressed="false" onclick="setUnit('ft-in')">ft/in</button>
-          </div>
-        </div>
-        <p class="error-text" id="height-error-reasonable" role="alert"></p>
-      </div>
       <div class="cg"><div class="cg-row"><span class="cg-lbl" id="lbl-reasonable-hd">Head Size</span></div><input type="range" id="sl-reasonable-hd" min="1" max="100" step="1" aria-labelledby="lbl-reasonable-hd" oninput="onSlider('reasonable','hd')"></div>
       <div class="cg"><div class="cg-row"><span class="cg-lbl" id="lbl-reasonable-sh">Shoulder Width</span></div><input type="range" id="sl-reasonable-sh" min="1" max="100" step="1" aria-labelledby="lbl-reasonable-sh" oninput="onSlider('reasonable','sh')"></div>
       <div class="cg"><div class="cg-row"><span class="cg-lbl" id="lbl-reasonable-ar">Arm Size</span></div><input type="range" id="sl-reasonable-ar" min="1" max="100" step="1" aria-labelledby="lbl-reasonable-ar" oninput="onSlider('reasonable','ar')"></div>
@@ -31775,7 +31692,7 @@ const DIM_SECTION = {sh:'shoulder', ch:'chest', wa:'waist', hi:'hips', th:'legs'
 // Median anatomy from the supplied armless prototype set, projected into the
 // 75-unit display height. The shoulder row stays at the established fairing
 // height; chest, waist, and hip rows restore the prototype's longer torso and
-// slightly shorter-looking lower body without changing the Height control.
+// slightly shorter-looking lower body while keeping the display scale fixed.
 const ZONE_DEF = {
   sh: {meas:17.2, peak:17.1, radius:1.45, blend:0.55, gain:1.16, tail:0.02},
   ch: {meas:21.6, peak:21.7, radius:2.0, blend:0.8, gain:0.82, tail:0.03},
@@ -32106,15 +32023,15 @@ function anchorHalfWidthAt(y, controls){
   return controls[last].hw;
 }
 
-function applyGlobalHeightScale(x,y,hs){
-  // Height is one uniform scale around the silhouette centerline, never a y-only stretch.
+function applyGlobalDisplayScale(x,y,hs){
+  // Uniform display scale around the silhouette centerline.
   return [SIL_CX+(x-SIL_CX)*hs,y*hs];
 }
 
-function applyGlobalHeightScaleToContour(pts,hs){
+function applyGlobalDisplayScaleToContour(pts,hs){
   const out=new Float32Array(pts.length);
   for(let i=0;i<pts.length;i+=2){
-    const [x,y]=applyGlobalHeightScale(pts[i],pts[i+1],hs);
+    const [x,y]=applyGlobalDisplayScale(pts[i],pts[i+1],hs);
     out[i]=x;
     out[i+1]=y;
   }
@@ -32401,7 +32318,7 @@ function calibratedArmBlend(side,size){
 
 function buildChestLockedArms(cond,dv,hs){
   const locked=anchorLock?.[cond]?.vals;
-  const reference={...dv,...toGeometryValues(locked),sh:dv.sh,ar:dv.ar,height:dv.height};
+  const reference={...dv,...toGeometryValues(locked),sh:dv.sh,ar:dv.ar};
   const shoulderPts=buildRenderedContourPoints(reference,hs);
   const profiles=window.ORIGINAL_ARM_DATA.profiles;
   const lower=profiles[0],upper=profiles[profiles.length-1];
@@ -34012,7 +33929,7 @@ function buildBaseContourPoints(dv,hs,linear=false){
       basePts[i]=lock===1?chest[i]:lerp(basePts[i],chest[i],lock);
     }
   }
-  return applyGlobalHeightScaleToContour(basePts,hs);
+  return applyGlobalDisplayScaleToContour(basePts,hs);
 }
 
 function measurementRowEdges(pts,y){
@@ -34033,7 +33950,7 @@ function quinticEase(t){
 let _bodyWidthCalibration=null;
 function getBodyWidthCalibration(){
   if(_bodyWidthCalibration)return _bodyWidthCalibration;
-  const neutral=toGeometryValues({hd:50,sh:50,ch:50,wa:50,hi:50,th:50,ar:50,height:170});
+  const neutral=toGeometryValues({hd:50,sh:50,ch:50,wa:50,hi:50,th:50,ar:50});
   const reference=buildBaseContourPoints(neutral,1);
   const supports={sh:[14.2,19.4],ch:[19.5,25],wa:[24,34],hi:[34.5,41.8],th:[43.1,54]};
   const calibration={};
@@ -34552,7 +34469,7 @@ function buildMeasurementGuides(pts,arms,hs){
 
 const _renderArmCache={};
 function getRenderedArms(cond,dv,hs){
-  const key=JSON.stringify([hs,{...dv,...toGeometryValues(anchorLock?.[cond]?.vals),sh:dv.sh,ar:dv.ar,height:dv.height}]);
+  const key=JSON.stringify([hs,{...dv,...toGeometryValues(anchorLock?.[cond]?.vals),sh:dv.sh,ar:dv.ar}]);
   const cached=_renderArmCache[cond];
   if(cached?.key===key)return cached.value;
   const value=buildChestLockedArms(cond,dv,hs);
@@ -34574,8 +34491,7 @@ function render(cond){
 
   const dv=toGeometryValues(displayVals[cond]);
 
-  // Entered height is a recorded measurement, not a display-size control.
-  const hs=heightScaleFromCm(dv.height);
+  const hs=BODY_DISPLAY_SCALE;
 
   // Keep the silhouette and its framing at a fixed display scale.
   const finalPts=buildRenderedContourPoints(dv,hs);
@@ -34674,31 +34590,6 @@ function render(cond){
       overlay.appendChild(group);
     }
 
-    // Height is a diagram guide too; its required input stays in both versions.
-    const hx=Math.max(SIL_W,maxX)+1, figH=SIL_H*hs;
-    const heightGroup=mk('g',{'data-guide-dim':'height'});
-    heightGroup.appendChild(mk('line',{
-      x1:hx,y1:'0',x2:hx,y2:figH.toFixed(2),
-      stroke:'#3498DB','stroke-width':'0.4','stroke-dasharray':'1,0.7',opacity:'0.6'
-    }));
-    const imperial=heightImperialParts(dv.height);
-    const dispH=heightUnit==='cm' ? `${Math.round(dv.height)}cm` : `${imperial.feet} ft`;
-    const htxt=mk('text',{
-      x:(hx+0.6).toFixed(1),y:(figH/2+0.5).toFixed(1),
-      fill:'#3498DB','font-size':heightUnit==='cm' ? '2.5' : '2.2',
-      'font-family':'Segoe UI,sans-serif','font-weight':'600'
-    });
-    htxt.textContent=dispH;
-    heightGroup.appendChild(htxt);
-    if(heightUnit==='ft-in'){
-      const inchesLabel=mk('text',{
-        x:(hx+0.6).toFixed(1),y:(figH/2+3.1).toFixed(1),
-        fill:'#3498DB','font-size':'2.2','font-family':'Segoe UI,sans-serif','font-weight':'600'
-      });
-      inchesLabel.textContent=`${imperial.inches} in`;
-      heightGroup.appendChild(inchesLabel);
-    }
-    overlay.appendChild(heightGroup);
     svg.appendChild(overlay);
   }
 
@@ -34706,11 +34597,7 @@ function render(cond){
 
 
 // 鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺愨晲鈺?// ANIMATED LERP STATE
-const HEIGHT_MIN_CM=1,HEIGHT_MAX_CM=272;
-
-function heightScaleFromCm(){
-  return 1;
-}
+const BODY_DISPLAY_SCALE=1;
 
 const BODY_CONTROL_MIN=1,BODY_CONTROL_MAX=100;
 function bodyControlValue(value){
@@ -34737,13 +34624,11 @@ const DIMS = ['hd','sh','ch','wa','hi','th','ar'];
 const CX = 150;
 
 const CONDS=['current','ideal','reasonable'];
-let heightUnit='cm';
 const sessionID=globalThis.crypto?.randomUUID?.() || `session-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,10)}`;
 let studyStarted=false;
 let reminderCondition=null;
 let reminderAction=null;
 const unchangedApprovals={current:null,ideal:null,reasonable:null};
-const heightEntries={current:null,ideal:null,reasonable:null};
 const stateTiming={
   current:{elapsedMs:0,startedAt:null},
   ideal:{elapsedMs:0,startedAt:null},
@@ -34761,9 +34646,9 @@ const anchorLock={
 };
 
 const displayVals={
-  current:    {hd:50,sh:50,ch:50,wa:50,hi:50,th:50,ar:50,height:170},
-  ideal:      {hd:50,sh:50,ch:50,wa:50,hi:50,th:50,ar:50,height:170},
-  reasonable: {hd:50,sh:50,ch:50,wa:50,hi:50,th:50,ar:50,height:170},
+  current:    {hd:50,sh:50,ch:50,wa:50,hi:50,th:50,ar:50},
+  ideal:      {hd:50,sh:50,ch:50,wa:50,hi:50,th:50,ar:50},
+  reasonable: {hd:50,sh:50,ch:50,wa:50,hi:50,th:50,ar:50},
 };
 const _raf={};
 
@@ -34772,22 +34657,18 @@ const _raf={};
 window.runExtremeArmGeometryDiagnostics=function(cond='current'){
   if(!CONDS.includes(cond)) throw new Error(`Unknown body state: ${cond}`);
   const dv=toGeometryValues(displayVals[cond]);
-  const hs=heightScaleFromCm(dv.height);
+  const hs=BODY_DISPLAY_SCALE;
   const result=extremeArmGeometryDiagnostics(cond,dv,hs);
   window.__bodyExtremeArmGeometryDiagnostics=result;
   return result;
 };
 
 function lerp(a,b,t){return a+(b-a)*t;}
-function scoreFromHeightCm(h){ return clamp(((h-150)/50)*100,0,100); }
 
 const _dragRaf={current:0,ideal:0,reasonable:0};
-function animateCond(cond,includeHeight=true,direct=false,changedDim=null){
+function animateCond(cond,direct=false,changedDim=null){
   const target={};
   for(const d of DIMS) target[d]=!changedDim || d===changedDim ? readSliderValue(cond,d) : displayVals[cond][d];
-  const enteredHeight=includeHeight ? getHcm(cond) : NaN;
-  target.height=Number.isFinite(enteredHeight) ? enteredHeight : displayVals[cond].height;
-  displayVals[cond].height=target.height;
 
   if(direct){
     // Commit before the frame so another slider cannot cancel this value update.
@@ -34833,109 +34714,9 @@ function onSlider(cond,dim){
     if(lbl) lbl.classList.remove('active');
     render(cond);
   },1200);
-  animateCond(cond,true,true,dim);
+  animateCond(cond,true,dim);
 }
 
-function heightFields(cond){
-  const suffixes=heightUnit==='cm' ? ['height'] : ['feet','inches'];
-  return suffixes.map(suffix=>document.getElementById(`num-${cond}-${suffix}`));
-}
-
-function heightSignature(cond){
-  return JSON.stringify(heightFields(cond).map(field=>field?.value));
-}
-
-function getHcm(cond){
-  const fields=heightFields(cond);
-  if(fields.some(field=>!field || field.value.trim()==='' || field.validity.badInput)) return NaN;
-  const values=fields.map(field=>Number(field.value));
-  if(values.some(value=>!Number.isFinite(value))) return NaN;
-  if(heightUnit==='cm'){
-    if(values[0]<HEIGHT_MIN_CM || values[0]>HEIGHT_MAX_CM) return NaN;
-  }else if(!Number.isInteger(values[0]) || values[0]<0 || values[0]>8 || values[1]<0 || values[1]>11.99){
-    return NaN;
-  }
-  const saved=heightEntries[cond];
-  // Preserve the exact entry while displaying a rounded unit conversion.
-  if(saved?.unit===heightUnit && saved.signature===heightSignature(cond)) return saved.cm;
-  const cm=heightUnit==='cm' ? values[0] : (values[0]*12+values[1])*2.54;
-  return cm>=HEIGHT_MIN_CM && cm<=HEIGHT_MAX_CM ? cm : NaN;
-}
-
-function focusHeight(cond){
-  const fields=heightFields(cond);
-  const field=fields.find(input=>input && (input.value.trim()==='' || input.validity.badInput)) || fields[0];
-  field?.focus();
-}
-
-function syncHeightFields(cond){
-  const metric=heightUnit==='cm';
-  document.getElementById(`height-cm-${cond}`).hidden=!metric;
-  document.getElementById(`height-imperial-${cond}`).hidden=metric;
-  for(const suffix of ['height','feet','inches']){
-    const field=document.getElementById(`num-${cond}-${suffix}`);
-    const active=(suffix==='height')===metric;
-    field.required=active;
-    field.disabled=!active;
-  }
-}
-
-function heightImperialParts(cm){
-  const hundredths=clamp(Math.round(cm/2.54*100),Math.ceil(HEIGHT_MIN_CM/2.54*100),Math.floor(HEIGHT_MAX_CM/2.54*100));
-  return {feet:Math.floor(hundredths/1200),inches:(hundredths%1200)/100};
-}
-
-function writeHeight(cond,cm){
-  const metric=document.getElementById(`num-${cond}-height`);
-  const feet=document.getElementById(`num-${cond}-feet`);
-  const inches=document.getElementById(`num-${cond}-inches`);
-  if(!Number.isFinite(cm)){
-    metric.value=feet.value=inches.value='';
-    heightEntries[cond]=null;
-    return;
-  }
-  metric.value=String(Number(cm.toFixed(6)));
-  // Carry a rounded 12 inches into feet and keep boundary displays valid.
-  const parts=heightImperialParts(cm);
-  feet.value=String(parts.feet);
-  inches.value=String(parts.inches);
-  heightEntries[cond]={unit:heightUnit,signature:heightSignature(cond),cm};
-}
-
-function clearHeightError(cond){
-  for(const suffix of ['height','feet','inches'])
-    document.getElementById(`num-${cond}-${suffix}`)?.removeAttribute('aria-invalid');
-  const error=document.getElementById(`height-error-${cond}`);
-  if(error){
-    error.classList.remove('show');
-    error.textContent='';
-  }
-}
-
-function validateHeight(cond){
-  if(Number.isFinite(getHcm(cond))){
-    clearHeightError(cond);
-    return true;
-  }
-  const fields=heightFields(cond);
-  const error=document.getElementById(`height-error-${cond}`);
-  const missing=fields.some(input=>!input || (input.value.trim()==='' && !input.validity.badInput));
-  if(error){
-    error.textContent=heightUnit==='cm'
-      ? (missing ? 'Please enter your height to continue.' : 'Please enter a height from 1 to 272 cm.')
-      : (missing ? 'Please enter both feet and inches (use 0 when needed).' : 'Please enter whole feet from 0 to 8 and inches from 0 to 11.99. The combined height must be from 1 to 272 cm.');
-    error.classList.add('show');
-  }
-  for(const input of fields) input?.setAttribute('aria-invalid','true');
-  return false;
-}
-
-function onHeightInput(cond){
-  heightEntries[cond]=null;
-  unchangedApprovals[cond]=null;
-  clearHeightError(cond);
-  animateCond(cond,true,true,'height');
-}
 
 function hasBodyAdjustments(cond){
   const initial=initVals[cond];
@@ -34948,7 +34729,6 @@ function bodyAdjustmentSignature(cond){
 }
 
 function validateBodyCondition(cond,action=null){
-  if(!validateHeight(cond)) return false;
   if(hasBodyAdjustments(cond) || unchangedApprovals[cond]===bodyAdjustmentSignature(cond)) return true;
   const descriptions={
     current:'your current body',
@@ -34971,46 +34751,22 @@ function closeAdjustmentReminder(returnFocus=true){
   reminderCondition=null;
   reminderAction=null;
   if(!cond || !returnFocus) return;
-  if(Number.isFinite(getHcm(cond))) document.getElementById(`sl-${cond}-hd`)?.focus();
-  else focusHeight(cond);
+  document.getElementById(`sl-${cond}-hd`)?.focus();
 }
 
 function continueWithoutChanges(){
   const cond=reminderCondition,action=reminderAction;
   if(!cond || !action) return;
   closeAdjustmentReminder(false);
-  if(!validateHeight(cond)){
-    focusHeight(cond);
-    return;
-  }
   unchangedApprovals[cond]=bodyAdjustmentSignature(cond);
   action();
 }
 
-function setUnit(u){
-  if(u===heightUnit || !['cm','ft-in'].includes(u)) return;
-  // Read every field in the old unit before switching the shared unit setting.
-  const heights=Object.fromEntries(CONDS.map(cond=>[cond,getHcm(cond)]));
-  heightUnit=u;
-  document.querySelectorAll('.height-unit-btn').forEach(btn=>{
-    btn.classList.toggle('on',btn.dataset.unit===u);
-    btn.setAttribute('aria-pressed',String(btn.dataset.unit===u));
-  });
-  CONDS.forEach(c=>{
-    syncHeightFields(c);
-    writeHeight(c,heights[c]);
-    clearHeightError(c);
-    render(c);
-  });
-}
-
-function rand(lo,hi){return lo+Math.random()*(hi-lo);}
 function randInt(lo,hi){return lo+Math.floor(Math.random()*(hi-lo+1));}
 
 function initCond(cond){
   // One inclusive integer sample per dimension drives the figure, controls and CSV.
   initVals[cond]={
-    height:rand(158,185),
     hd:randInt(5,95),
     sh:randInt(5,95),
     ch:randInt(5,95),
@@ -35038,12 +34794,8 @@ function initCond(cond){
 
 function applyCond(cond,v){
   cancelAnimationFrame(_raf[cond]);
-  // Random height is only a preview; each condition needs a participant entry.
-  syncHeightFields(cond);
-  writeHeight(cond,NaN);
   unchangedApprovals[cond]=null;
-  clearHeightError(cond);
-  const values={...v};
+  const values=Object.fromEntries(DIMS.map(dim=>[dim,bodyControlValue(v[dim])]));
   for(const d of DIMS){
     values[d]=bodyControlValue(values[d]);
     const el=document.getElementById(`sl-${cond}-${d}`);
@@ -35132,12 +34884,7 @@ function goPage(id){
   const cond=id.replace('page-','');
   setTimedState(cond);
   if(CONDS.includes(cond)) render(cond);
-  if(blockedCondition){
-    if(!document.getElementById('adjustment-reminder').open){
-      focusHeight(blockedCondition);
-    }
-    return false;
-  }
+  if(blockedCondition)return false;
   return true;
 }
 
@@ -35161,10 +34908,10 @@ const _svgScoreRanges={};
 function getSvgScoreRanges(cond){
   const key=JSON.stringify(anchorLock[cond].vals);
   if(_svgScoreRanges[cond]?.key===key)return _svgScoreRanges[cond].ranges;
-  const neutral={hd:50,sh:50,ch:50,wa:50,hi:50,th:50,ar:50,height:170},ranges={};
+  const neutral={hd:50,sh:50,ch:50,wa:50,hi:50,th:50,ar:50},ranges={};
   for(const dim of DIMS){
     const measure=score=>{
-      const dv=toGeometryValues({...neutral,[dim]:score}),hs=heightScaleFromCm(dv.height);
+      const dv=toGeometryValues({...neutral,[dim]:score}),hs=BODY_DISPLAY_SCALE;
       const pts=buildRenderedContourPoints(dv,hs),arms=getRenderedArms(cond,dv,hs).arms;
       const guide=buildMeasurementGuides(pts,arms,hs).find(item=>item.dim===dim);
       return guide?.rx-guide?.lx;
@@ -35179,8 +34926,8 @@ function getSvgScoreRanges(cond){
 
 function buildOutputSnapshot(cond,values){
   const sliders=Object.fromEntries(DIMS.map(dim=>[dim,bodyControlValue(values[dim])]));
-  const dv=toGeometryValues({...sliders,height:values.height});
-  const hs=heightScaleFromCm(dv.height),pts=buildRenderedContourPoints(dv,hs);
+  const dv=toGeometryValues(sliders);
+  const hs=BODY_DISPLAY_SCALE,pts=buildRenderedContourPoints(dv,hs);
   const arms=getRenderedArms(cond,dv,hs).arms;
   const guides=buildMeasurementGuides(pts,arms,hs);
   const ranges=getSvgScoreRanges(cond),svg_measure={},svg_score={},svg_delta={};
@@ -35200,36 +34947,26 @@ function exportCSV(){
   for(const cond of CONDS){
     if(!validateBodyCondition(cond,exportCSV)){
       goPage(`page-${cond}`);
-      if(!document.getElementById('adjustment-reminder').open){
-        focusHeight(cond);
-      }
       return;
     }
   }
   pauseStateTimer();
-  const row={participant_id:sessionID,timestamp_utc:new Date().toISOString(),height_unit:heightUnit,
+  const row={participant_id:sessionID,timestamp_utc:new Date().toISOString(),
     svg_measure_unit:'svg_user_unit',svg_measure_definition:'horizontal_guide_length',body_calibration_version:'v58-linear-guides-1',
-    output_schema_version:'v59-paired-svg-scores-1',svg_score_scale:'1-100',
+    output_schema_version:'v60-no-height-1',svg_score_scale:'1-100',
     svg_score_normalization:'neutral_reference_endpoint_widths',svg_delta_definition:'svg_score_minus_slider'};
   for(const cond of CONDS){
     const pre=cond==='current'?'cbs':cond==='ideal'?'ibs':'rbs';
     row[`${pre}_duration_seconds`]=stateElapsedSeconds(cond);
-    const hcm=getHcm(cond);
-    const imperial=heightImperialParts(hcm);
-    row[`${pre}_height_cm`]=+hcm.toFixed(6);
-    row[`${pre}_height_in`]=+(hcm/2.54).toFixed(6);
-    row[`${pre}_height_ft`]=imperial.feet;
-    row[`${pre}_height_inches`]=imperial.inches;
     row[`${pre}_body_changed`]=hasBodyAdjustments(cond) ? 1 : 0;
     row[`${pre}_unchanged_confirmed`]=unchangedApprovals[cond]===bodyAdjustmentSignature(cond) ? 1 : 0;
-    const final=buildOutputSnapshot(cond,{...Object.fromEntries(DIMS.map(d=>[d,readSliderValue(cond,d)])),height:hcm});
+    const final=buildOutputSnapshot(cond,Object.fromEntries(DIMS.map(d=>[d,readSliderValue(cond,d)])));
     for(const d of DIMS) row[`${pre}_${d}`]=final.sliders[d];
     for(const d of DIMS) row[`${pre}_${d}_svg_measure`]=final.svg_measure[d];
     for(const d of DIMS) row[`${pre}_${d}_svg_score`]=final.svg_score[d];
     for(const d of DIMS) row[`${pre}_${d}_svg_delta`]=final.svg_delta[d];
     const iv=initVals[cond];
     const initial=buildOutputSnapshot(cond,iv);
-    row[`init_${pre}_height_cm`]=Math.round(iv.height);
     for(const d of DIMS) row[`init_${pre}_${d}`]=iv[d];
     for(const d of DIMS) row[`init_${pre}_${d}_svg_measure`]=initial.svg_measure[d];
     for(const d of DIMS) row[`init_${pre}_${d}_svg_score`]=initial.svg_score[d];
@@ -35254,36 +34991,34 @@ function biaPost(type,payload={}){
 function biaState(){
   const bodies={};
   for(const c of CONDS){
-    const raw={};for(const k of ['height','feet','inches'])raw[k]=document.getElementById(`num-${c}-${k}`).value;
     bodies[c]={initial:{...initVals[c]},sliders:Object.fromEntries(biaDims.map(d=>[d,readSliderValue(c,d)])),
-      anchor:structuredClone(anchorLock[c]),display:{...displayVals[c],...Object.fromEntries(biaDims.map(d=>[d,readSliderValue(c,d)]))},raw,heightEntry:heightEntries[c],
+      anchor:structuredClone(anchorLock[c]),display:{...displayVals[c],...Object.fromEntries(biaDims.map(d=>[d,readSliderValue(c,d)]))},
       approval:unchangedApprovals[c],elapsedMs:stateElapsedSeconds(c)*1000};
   }
-  return {schema:1,variant:document.body.dataset.biaVariant,revision:++biaRevision,complete:biaComplete,
-    page:document.querySelector('.page.active')?.id,unit:heightUnit,bodies};
+  return {schema:2,variant:document.body.dataset.biaVariant,revision:++biaRevision,complete:biaComplete,
+    page:document.querySelector('.page.active')?.id,bodies};
 }
 function biaValidState(s){
-  if(!s||s.schema!==1||s.variant!==document.body.dataset.biaVariant||!['cm','ft-in'].includes(s.unit)||
+  if(!s||s.schema!==2||s.variant!==document.body.dataset.biaVariant||
     !['page-current','page-ideal','page-reasonable','page-thankyou'].includes(s.page)||!Number.isSafeInteger(s.revision)||s.revision<1)return false;
   return CONDS.every(c=>{const b=s.bodies?.[c];return b&&biaDims.every(d=>[b.initial?.[d],b.sliders?.[d],b.anchor?.vals?.[d]].every(v=>Number.isInteger(v)&&v>=1&&v<=100))&&
-    Number.isFinite(b.initial.height)&&Number.isFinite(b.elapsedMs)&&b.elapsedMs>=0&&
+    Number.isFinite(b.elapsedMs)&&b.elapsedMs>=0&&
     Number.isFinite(b.anchor.score)&&Number.isFinite(b.anchor.proto)&&b.display&&
-    biaDims.concat('height').every(d=>Number.isFinite(b.display[d]))&&['height','feet','inches'].every(k=>typeof b.raw?.[k]==='string');});
+    biaDims.every(d=>Number.isFinite(b.display[d]));});
 }
 function biaResults(){
   const values={};
   for(const c of CONDS){
-    const p=biaPrefixes[c],h=getHcm(c);
-    const v={...Object.fromEntries(biaDims.map(d=>[d,readSliderValue(c,d)])),height:Number.isFinite(h)?h:displayVals[c].height};
+    const p=biaPrefixes[c];
+    const v=Object.fromEntries(biaDims.map(d=>[d,readSliderValue(c,d)]));
     const f=buildOutputSnapshot(c,v),i=buildOutputSnapshot(c,initVals[c]);
     for(const d of biaDims){values[`${p}_${d}_svg_score`]=f.svg_score[d];values[`init_${p}_${d}_svg_score`]=i.svg_score[d];
       values[`${p}_${d}`]=f.sliders[d];values[`init_${p}_${d}`]=i.sliders[d];}
-    values[`${p}_height_cm`]=Number.isFinite(h)?Number(h.toFixed(6)):'';
     values[`${p}_duration_seconds`]=stateElapsedSeconds(c);
   }
   return values;
 }
-function biaAllValid(){return CONDS.every(c=>Number.isFinite(getHcm(c))&&(hasBodyAdjustments(c)||unchangedApprovals[c]===bodyAdjustmentSignature(c)));}
+function biaAllValid(){return CONDS.every(c=>(hasBodyAdjustments(c)||unchangedApprovals[c]===bodyAdjustmentSignature(c)));}
 function biaSave(){
   if(!biaContext||!studyStarted||biaRestoring||biaBlocked)return;
   try{const state=biaState();biaLastMessage={state,values:biaResults()};biaPost('save',biaLastMessage);}
@@ -35291,16 +35026,14 @@ function biaSave(){
 }
 function biaRestore(s){
   if(!biaValidState(s))throw Error('Saved assessment state is invalid; it has not been replaced.');
-  biaRestoring=true;pauseStateTimer();heightUnit=s.unit;studyStarted=true;timingSessionActive=true;biaRevision=s.revision;
+  biaRestoring=true;pauseStateTimer();studyStarted=true;timingSessionActive=true;biaRevision=s.revision;
   for(const c of CONDS){
     const b=s.bodies[c];initVals[c]=structuredClone(b.initial);anchorLock[c]=structuredClone(b.anchor);
     Object.assign(displayVals[c],b.display);
     for(const d of biaDims)document.getElementById(`sl-${c}-${d}`).value=b.sliders[d];
-    for(const k of ['height','feet','inches'])document.getElementById(`num-${c}-${k}`).value=b.raw[k];
-    heightEntries[c]=b.heightEntry;unchangedApprovals[c]=b.approval;
-    stateTiming[c].elapsedMs=b.elapsedMs;stateTiming[c].startedAt=null;syncHeightFields(c);render(c);
+    unchangedApprovals[c]=b.approval;
+    stateTiming[c].elapsedMs=b.elapsedMs;stateTiming[c].startedAt=null;render(c);
   }
-  document.querySelectorAll('.height-unit-btn').forEach(b=>{b.classList.toggle('on',b.dataset.unit===heightUnit);b.setAttribute('aria-pressed',String(b.dataset.unit===heightUnit));});
   document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===s.page));
   biaComplete=!!s.complete&&s.page==='page-thankyou'&&biaAllValid();
   if(!biaComplete&&s.page==='page-thankyou')throw Error('Saved completion did not pass validation.');

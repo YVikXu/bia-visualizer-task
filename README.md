@@ -1,35 +1,32 @@
 # BIA-InW Body Visualizer
 
-Let participants adjust a body figure in their browser, then save the measurements you need in your Qualtrics survey.
-
-## What does the app do?
-
-Participants create three body figures in order:
+A browser-based body image assessment for research and Qualtrics surveys. Participants adjust a silhouette to represent three bodies in sequence:
 
 **Current Body → Ideal Body → Reasonable Body**
 
-On each page, they enter a height and adjust seven dimensions: **Head, Shoulder, Arm, Chest, Waist, Hips, and Thigh**. The starting figure is random. The app keeps both its starting values and the participant's final values. A valid height is required. If a participant leaves the figure unchanged, the app asks them to confirm that choice.
+Each page has seven dimensions, arranged from top to bottom: **Head, Shoulder, Arm, Chest / Bust, Waist, Hips, and Thigh**. Sliders use integer settings from **1 to 100**, with randomized starting values from **5 to 95**. If all sliders remain at their initial values, participants must confirm that choice before continuing.
 
-## Two versions
+## v60: no height entry
 
-| With dimension guides | Without dimension guides |
-|---|---|
-| Lines show the body dimensions. | The figure is shown without those lines. |
-| `body-visualizer.html` | `body-visualizer-noline.html` |
+The current release removes participant height entry and its validation requirement. The figure is displayed **without measurement guides**, while the SVG measurement calculations remain available for analysis. Starting and final SVG scores, starting and final slider settings, and visible time on each body page are retained.
 
-<table><tr><td align="center" valign="bottom"><img src="with-guides-demo.png" height="478" alt="App screenshot with dimension guides"><br>With dimension guides</td><td align="center" valign="bottom"><img src="without-guides-demo.png" height="464" alt="App screenshot without dimension guides"><br>Without dimension guides</td></tr></table>
+[Open the assessment](https://yvikxu.github.io/bia-visualizer-task/body-visualizer-noline.html)
 
-These are app screenshots with different body settings. The silhouettes are displayed at approximately the same height. Hiding the visible guides does not remove the measurement calculations.
+Both existing HTML addresses temporarily serve this same **no-height, no-guides** version, so existing app links continue to work. The former guides address (`body-visualizer.html`) currently also displays no guides; a height-free version with guides will be added later.
 
-Try the standalone apps: [with dimension guides](https://yvikxu.github.io/bia-visualizer-task/body-visualizer.html) · [without dimension guides](https://yvikxu.github.io/bia-visualizer-task/body-visualizer-noline.html).
+**Updating an existing Qualtrics survey:** Keep the existing iframe address. Replace the question JavaScript with [qualtrics/question.js](qualtrics/question.js), use the 87-field result list, test a new response, and publish the survey changes. Updating GitHub does not update JavaScript previously pasted into Qualtrics. Height-enabled saved states are not silently converted or overwritten; validate this release with a new response.
+
+## Validation
+
+The supplied v60 standalone file passed 71 offline form-flow checks, 2,100 slider-isolation checks, and 3,500 geometry configurations. All 24,500 measured dimension comparisons matched v58. The no-height Qualtrics adaptation also passed controlled save/restore, field mapping, completion gating, and message-origin checks. See [integration-checks.md](qualtrics/integration-checks.md) for the current verification scope. These checks do not establish psychological measurement validity.
 
 ## What does the measurement output?
 
-The standalone app downloads a **CSV file**, a table you can open in Excel or statistical software. The current standalone export has **202 columns**, including body values and extra details about the session and calculations.
+The standalone app downloads a **CSV file**, a table you can open in Excel or statistical software. The current standalone export has **186 columns**, including body values and extra details about the session and calculations.
 
 **You do not have to save everything in Qualtrics.** Choose the values your study needs. In Qualtrics, each Embedded Data field is a named space that stores a value with a survey response.
 
-The supplied connection saves **90 body result fields**:
+The supplied connection saves **87 body result fields**:
 
 | What is saved | Fields across 3 bodies | Example | Purpose |
 |---|---:|---|---|
@@ -37,13 +34,12 @@ The supplied connection saves **90 body result fields**:
 | Starting SVG scores | 21 | `init_cbs_wa_svg_score` | The same scores before adjustment |
 | Final slider settings | 21 | `cbs_wa` | Recreate the final figure |
 | Starting slider settings | 21 | `init_cbs_wa` | Recreate the starting figure and original arm reference |
-| Entered height, centimeters | 3 | `cbs_height_cm` | Height entered for each body |
 | Visible time, seconds | 3 | `cbs_duration_seconds` | Time looking, adjusting and waiting in a pop-up; time away is excluded |
-| **Total** | **90** | **30 per body × 3** | |
+| **Total** | **87** | **29 per body × 3** | |
 
 **Reading the names:** `cbs` = Current Body; `ibs` = Ideal Body; `rbs` = Reasonable Body. `init_` means a starting value. Dimension names are `hd` (Head), `sh` (Shoulder), `ar` (Arm), `ch` (Chest), `wa` (Waist), `hi` (Hips), and `th` (Thigh).
 
-Other standalone outputs include measured drawing-line lengths (`svg_measure`), the difference between SVG score and slider (`svg_delta`), height in other units, unchanged-body confirmations, and session/export details. These are not part of this 90-field selection.
+Other standalone outputs include measured drawing-line lengths (`svg_measure`), the difference between SVG score and slider (`svg_delta`), unchanged-body confirmations, and session/export details. These are not part of this 87-field selection.
 
 ### Why are the SVG score and slider setting different?
 
@@ -85,7 +81,7 @@ For the supplied setup, open **Survey Flow** and add an **Embedded Data** elemen
 
 The list contains:
 
-- **90 result fields**, listed separately in [embedded-data-fields.txt](qualtrics/embedded-data-fields.txt).
+- **87 result fields**, listed separately in [embedded-data-fields.txt](qualtrics/embedded-data-fields.txt).
 - **2 technical fields**, `bia_state` and `bia_complete`, listed in [recovery-fields.txt](qualtrics/recovery-fields.txt). These preserve progress and completion; they are not additional body measurements.
 
 You may choose a different set of results for your study. The app's outgoing values and the question connection's list must be changed together. **Creating extra Qualtrics fields alone does not make the app send those values.** See [setup.md](qualtrics/setup.md) for the places to change, or ask the person helping you with the code. Keep the recovery information even if you select fewer analysis fields.
@@ -96,7 +92,7 @@ You may choose a different set of results for your study. The app's outgoing val
 2. Open the question's **HTML/source view**. Replace its contents with [qualtrics/question.html](qualtrics/question.html).
 3. In `data-app-url`, replace the example address with your own full app link from Step 1.
 
-**Want guides?** Use the link ending in `/body-visualizer.html`.
+**Guides version:** pending. Both HTML addresses currently display the same no-guides v60 app.
 
 **Want no guides?** Use the link ending in `/body-visualizer-noline.html`.
 
@@ -112,7 +108,7 @@ If JavaScript is unavailable in your account, ask your Qualtrics administrator w
 
 ### 5. Understand saving and returning
 
-The app passes progress to the survey during the task. A browser copy is tied to the existing Qualtrics response identifier, so a different response does not reuse the same person's figure. Initial values, adjusted figures, original arm reference, height, units, current page, confirmations and visible time are preserved.
+The app passes progress to the survey during the task. A browser copy is tied to the existing Qualtrics response identifier, so a different response does not reuse the same person's figure. Initial values, adjusted figures, original arm reference, current page, confirmations and visible time are preserved.
 
 **The completion message confirms that the survey page accepted the values. Clicking Qualtrics Next saves that page to Qualtrics' server.** Before that click, recovery of an unfinished draft depends on storage in the same browser. Clearing browser data or unavailable browser storage can prevent recovery. Unsubmitted cross-device recovery is not supported.
 
@@ -122,7 +118,7 @@ The apps run on GitHub Pages, but responses are not uploaded to GitHub. Results 
 
 Use **Preview** first. Check [test-checklist.md](qualtrics/test-checklist.md), then complete a test response and inspect its exported values.
 
-Check missing height, unchanged-body confirmation, completion, refresh/return behavior, separate responses, and the devices you allow. Seeing the figure appear does not prove the results were saved. Only publish the survey when your setup has passed these checks.
+Confirm height is absent on all three pages. Check unchanged-body confirmation, completion, refresh/return behavior, separate responses, and the devices you allow. Seeing the figure appear does not prove the results were saved. Only publish the survey when your setup has passed these checks.
 
 ### Desktop and phone layout
 
@@ -137,10 +133,8 @@ Desktop Chrome Preview, a complete published survey response, and simulated port
 | The app does not appear. | Open its full link by itself. Check the filename, Pages deployment and `data-app-url`. |
 | The wrong version appears. | Check whether the link ends in `body-visualizer.html` or `body-visualizer-noline.html`. |
 | Values are blank. | Check the question JavaScript and matching field names, defined before the block. |
-| Next does not appear. | Check height and confirmation on all three pages, then read the save status above the app. |
+| Next does not appear. | Check unchanged-body confirmation on all three pages, then read the save status above the app. |
 | A return creates a new random figure. | Check that it is the same survey response and that browser storage is available. Stop collection until recovery works as documented. |
 | New code is not visible in the live survey. | Qualtrics draft changes require Publish; Pages changes require a successful deployment. Test the draft before publishing. |
 
-The current connection was also checked with **one completed response through a published survey link**: all 90 result fields were present and nonempty. Starting/final slider settings and heights matched the observed inputs exactly. All 42 SVG scores passed numerical recalculation; the three time fields matched the saved elapsed-time state. Refreshing the same response restored all slider values, heights and completion. See [qualtrics/integration-checks.md](qualtrics/integration-checks.md) for methods, tolerances and limits.
-
-**Loading issue observed:** twice during that live test, the frame stayed blank at “Loading” until the same response was re-entered or refreshed. Progress was preserved, but the cause is not yet isolated. The data check does not establish reliable loading on every visit. Test and resolve this in your intended survey/browser setup before collecting data.
+Current v60 verification details are recorded in [qualtrics/integration-checks.md](qualtrics/integration-checks.md). Earlier height-enabled live-survey results are historical and do not validate the v60 update.
