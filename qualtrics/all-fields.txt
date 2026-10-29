@@ -26,7 +26,6 @@ init_cbs_ch
 init_cbs_wa
 init_cbs_hi
 init_cbs_th
-cbs_height_cm
 cbs_duration_seconds
 ibs_hd_svg_score
 ibs_sh_svg_score
@@ -56,7 +55,6 @@ init_ibs_ch
 init_ibs_wa
 init_ibs_hi
 init_ibs_th
-ibs_height_cm
 ibs_duration_seconds
 rbs_hd_svg_score
 rbs_sh_svg_score
@@ -86,7 +84,6 @@ init_rbs_ch
 init_rbs_wa
 init_rbs_hi
 init_rbs_th
-rbs_height_cm
 rbs_duration_seconds
 bia_state
 bia_complete

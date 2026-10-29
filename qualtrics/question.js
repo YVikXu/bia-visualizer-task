@@ -6,19 +6,19 @@ Qualtrics.SurveyEngine.addOnReady(function () {
   var allowed=new URL(frame.dataset.appUrl).origin;
   var response=root.dataset.response, survey=root.dataset.survey, channel=crypto.randomUUID();
   var prefixes=['cbs','ibs','rbs'], dims=['hd','sh','ar','ch','wa','hi','th'], fields=[];
-  prefixes.forEach(function(p){dims.forEach(function(d){fields.push(p+'_'+d+'_svg_score','init_'+p+'_'+d+'_svg_score',p+'_'+d,'init_'+p+'_'+d);});fields.push(p+'_height_cm',p+'_duration_seconds');});
+  prefixes.forEach(function(p){dims.forEach(function(d){fields.push(p+'_'+d+'_svg_score','init_'+p+'_'+d+'_svg_score',p+'_'+d,'init_'+p+'_'+d);});fields.push(p+'_duration_seconds');});
   var ready=false, latest=null, form=root.closest('form'), stopped=false, goingBack=false;
   q.hideNextButton();
   function text(s){status.textContent=s;}
   function gate(){ready=false;q.hideNextButton();}
   // Never share a recovery key across responses. Stop rather than guess an ID.
   if(!response||response.indexOf('$'+'{')>=0||!survey||survey.indexOf('$'+'{')>=0){text('The survey response identifier is unavailable. Please contact the study team.');return;}
-  var key='bia-v1:'+survey+':'+response+':'+q.questionId;
+  var key='bia-v2:'+survey+':'+response+':'+q.questionId;
   function parse(s){if(!s)return null;try{return JSON.parse(s);}catch(_){throw Error('Saved progress could not be read.');}}
   function readSaved(){
     var server=parse(engine.getEmbeddedData('bia_state')),local=null;
     try{local=parse(localStorage.getItem(key));}catch(e){if(e.name!=='SecurityError'&&e.name!=='QuotaExceededError')throw e;}
-    function valid(e){return e&&e.response===response&&e.survey===survey&&e.question===q.questionId&&e.state&&e.state.schema===1;}
+    function valid(e){return e&&e.response===response&&e.survey===survey&&e.question===q.questionId&&e.state&&e.state.schema===2;}
     if(server&&!valid(server))throw Error('Saved progress does not match this response.');
     if(local&&!valid(local))throw Error('Cached progress does not match this response.');
     return valid(local)&&(!server||local.state.revision>server.state.revision)?local:server;
@@ -32,16 +32,15 @@ Qualtrics.SurveyEngine.addOnReady(function () {
     if(m.type==='ready'){frame.contentWindow.postMessage({source:'bia-qualtrics-host',type:'init',channel:channel,state:latest?latest.state:(initial?initial.state:null)},allowed);return;}
     if(m.channel!==channel)return;
     if(m.type==='error'){gate();text(m.message||'Unable to save assessment.');return;}
-    if(m.type!=='save'||!m.state||m.state.schema!==1||!Number.isSafeInteger(m.state.revision)||m.state.revision<1)return;
+    if(m.type!=='save'||!m.state||m.state.schema!==2||!Number.isSafeInteger(m.state.revision)||m.state.revision<1)return;
     if(latest&&m.state.revision<latest.state.revision)return;
     if(latest&&m.state.revision===latest.state.revision){frame.contentWindow.postMessage({source:'bia-qualtrics-host',type:'ack',channel:channel,revision:m.state.revision},allowed);return;}
     gate();
     try{
       var values=m.values;
-      if(!values||Object.keys(values).length!==90)throw Error('Expected 90 assessment values.');
+      if(!values||Object.keys(values).length!==87)throw Error('Expected 87 assessment values.');
       fields.forEach(function(f){var v=values[f];if(v!==''&&(typeof v!=='number'||!Number.isFinite(v)))throw Error('Invalid assessment value.');
         if(v!==''&&(/_svg_score$/.test(f)||dims.some(function(d){return f.endsWith('_'+d);} ))&&(v<1||v>100))throw Error('Body value out of range.');
-        if(/_height_cm$/.test(f)&&v!==''&&(v<1||v>272))throw Error('Height out of range.');
         if(/_duration_seconds$/.test(f)&&(v<0||v===''))throw Error('Invalid elapsed time.');
         if(m.state.complete&&v==='')throw Error('Incomplete results.');});
       var envelope={response:response,survey:survey,question:q.questionId,state:m.state};
@@ -76,7 +75,7 @@ Qualtrics.SurveyEngine.addOnReady(function () {
     frame.style.height=(landscape?Math.max(270,Math.min(320,height-20,visibleHeight-12)):Math.max(480,Math.min(820,height-160)))+'px';
   }
   resizeFrame();window.addEventListener('resize',resizeFrame);
-  frame.src=frame.dataset.appUrl+'?qualtrics=1&layout=20261028-spacing3';
+  frame.src=frame.dataset.appUrl+'?qualtrics=1&layout=20261029-v60-noheight';
   engine.addOnPageSubmit(function(type){if(type==='next'&&!ready)return false;});
   engine.addOnUnload(function(){stopped=true;layoutStyle.remove();document.body.classList.remove('bia-survey-page');window.removeEventListener('resize',resizeFrame);window.removeEventListener('message',receive);document.removeEventListener('click',preventNext,true);if(form)form.removeEventListener('submit',preventIncomplete,true);});
 });

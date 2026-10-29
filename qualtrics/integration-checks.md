@@ -1,3 +1,17 @@
+# v60 no-height integration checks — 29 October 2026
+
+## Current release
+Both HTML app paths serve the same no-height/no-guides v60 app. The drawing and scoring code comes from the validated standalone file; the separate adapter preserves Qualtrics saving, same-response recovery, and completion gating.
+
+- 87 result fields: 84 body values plus three visible durations; no participant-height fields.
+- 21 controlled adapter assertions passed, including exact restoration of all 87 values, initial settings, adjusted figures, original arm reference and frozen completion time.
+- Controlled question-host tests passed for 89 total fields (87 results plus bia_state/bia_complete), gating, origin/frame/channel checks, stale messages, failed writes, recovery, and separate-response isolation.
+- Schema 2 rejects height-enabled schema-1 drafts without overwriting them. Use a new response for migration testing.
+- These are offline tests with controlled DOM/clock and source-based geometry. Browser/Qualtrics v60 checks will be recorded separately after deployment.
+
+## Historical height-enabled validation
+The following is retained as a record of the previous 90-field release. It does not validate v60.
+
 # Integration checks — 28 October 2026
 
 ## Published survey: saving and numerical checks
